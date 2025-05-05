@@ -27,23 +27,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framwork',
+    'rest_framework',
     'rest_framework_simplejwt',
     'app'
 ]
 
-REST_FRAMEWORK ={
-    'DEFAUTL_AUTHENTICATION_CLASSES':(
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
+# REST_FRAMEWORK ={
+#     'DEFAUTL_AUTHENTICATION_CLASSES':(
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     )
+# }
 
-SIMPLE_JWT = {
-    'ACESS_TOKEN_LIFETIME': timedelta(hours=2),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
-}
+# SIMPLE_JWT = {
+#     'ACESS_TOKEN_LIFETIME': timedelta(hours=2),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
+# }
 
-# AUTH_USER_MODEL = 'app.Usuario'
+AUTH_USER_MODEL = 'app.Usuario'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'cadastro.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'cadastro',
+        'USER': 'root', #usuario no workbench
+        'PASSWORD': 'senai', #senha no workbench
+        'HOST': 'localhost', #endereço
+        'PORT': '3306'
     }
 }
 
