@@ -9,12 +9,12 @@ class Usuario(AbstractUser):
     ]
     tipo = models.CharField(max_length=1, choices=TIPO_CHOICES, default='P')
 
-    ni = models.IntegerField()
+    ni = models.IntegerField(unique=True)
     telefone = models.CharField(max_length=20, blank=True, null=True)
     nascimento = models.DateField(blank=True, null=True)
     data_contratacao = models.DateField()
 
-    REQUIRED_FIELDS = ['ni', 'data_contratacao']
+    REQUIRED_FIELDS = ['ni', 'data_contratacao', 'tipo']
 
     def __str__(self):
         return f'{self.username} ({self.get_tipo_display()})' #funcao que pega a palavra não o valor (dicionario)
@@ -51,7 +51,6 @@ class Ambiente(models.Model):
     ]
     periodo = models.CharField(max_length=1, choices=PERIODO, default='M')
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
-    professor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     reserva = models.ForeignKey(Sala, on_delete=models.CASCADE)
     professor = models.ForeignKey(Usuario, on_delete=models.CASCADE, limit_choices_to={'tipo': 'P'}) #chave estrangeira da tabela professor
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
@@ -59,9 +58,5 @@ class Ambiente(models.Model):
     def __str__(self):
         return f'{self.reserva} - {self.get_periodo_display()}, Do dia {self.dt_inicio} até {self.dt_termino}'
 
-    
-
-    def __str__(self):
-        return self.dt_inicio
     
 

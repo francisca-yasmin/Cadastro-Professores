@@ -1,10 +1,21 @@
 from django.shortcuts import render
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.exceptions import NotFound
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
-from .models import Usuario, Disciplina, Ambiente
-from .serializers import UsuarioSerializer, DisciplinaSerializer, AmbienteSerializer, LoginSerializer
+from .models import Usuario, Disciplina, Ambiente, Sala
+from .serializers import UsuarioSerializer, DisciplinaSerializer, AmbienteSerializer, LoginSerializer, SalaSerializer
 from .permissions import IsGestor, IsProfessor,  IsDonoOuGestor
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
+
+# def updatee(request, *args, **kwargs, super):
+#     response = super.update(request, *args, **kwargs)
+#         return Response({
+#             'mensagem': 'Usuário atualizado com sucesso!',
+#             'dados': response.data
+#         }, status=status.HTTP_200_OK)
+
 
 # CRUD -> Usuario (professor, gestor)
 class UsuarioListCreate(ListCreateAPIView):
@@ -20,6 +31,21 @@ class UsuarioRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     # o usuario vai procurar pelo id do usuario(professor/gestor)
     lookup_field = 'pk' 
 
+    #mensagem que foi atualizado
+    def update(self, request, *args, **kwargs):
+        response = super().update(request, *args, **kwargs)
+        return Response({
+            'mensagem': 'Usuário atualizado com sucesso!',
+            'dados': response.data
+        }, status=status.HTTP_200_OK)
+
+    #mensagem pra quando o user eh deletado
+    def destroy(self, request, *args, **kwargs):
+        super().destroy(request, *args, **kwargs)
+        return Response({
+            'mensagem': 'Usuário deletado com sucesso!'
+        }, status=status.HTTP_204_NO_CONTENT)
+
 # CRUD -> disciplina
 class DisciplinaListCreate(ListCreateAPIView):
     queryset = Disciplina.objects.all()
@@ -28,7 +54,7 @@ class DisciplinaListCreate(ListCreateAPIView):
     def get_permissions(self):
         if self.request.method == 'GET': #se não for get eh post
             return [IsAuthenticated()]
-        return [IsGestor]
+        return [IsGestor()]
 
 #get, put e delete
 class DisciplinaRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
@@ -54,8 +80,8 @@ class AmbienteListCreate(ListCreateAPIView):
     #define permissões
     def get_permissions(self):
         if self.request.method == 'GET':
-            return [IsAuthenticated]
-        return [IsGestor]
+            return [IsAuthenticated()]
+        return [IsGestor()]
 
     #define a consulta que o usuario vai fazer
     def get_queryset(self):
@@ -81,4 +107,43 @@ class AmbienteProfessorList(ListAPIView):
 
 class LoginView(TokenObtainPairView):
     serializer_class = LoginSerializer
+
+#CRUD -> SALAS
+class SalaListCreate(ListCreateAPIView):
+    queryset = Sala.objects.all()
+    serializer_class = SalaSerializer
+
+    #define permissões
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return [IsAuthenticated()]
+        return [IsGestor()]
+
+
+class SalaRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
+    queryset = Sala.objects.all()
+    serializer_class = SalaSerializer
+    permission_classes = [IsGestor]
+
+    def get_object(self):
+        try:
+            return super().get_object()
+        except:
+            raise NotFound(detail="Sala não encontrada com o ID fornecido.")
+
+    #mensagem que foi atualizado
+    def update(self, request, *args, **kwargs):
+        response = super().update(request, *args, **kwargs)
+        return Response({
+            'mensagem': 'Sala atualizada com sucesso!',
+            'dados': response.data
+        }, status=status.HTTP_200_OK)
+
+    #mensagem pra quando o user eh deletado
+    def destroy(self, request, *args, **kwargs):
+        super().destroy(request, *args, **kwargs)
+        return Response({
+            'mensagem': 'Sala deletada com sucesso!'
+        }, status=status.HTTP_204_NO_CONTENT)
+
 

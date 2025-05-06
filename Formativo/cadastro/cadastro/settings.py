@@ -32,16 +32,17 @@ INSTALLED_APPS = [
     'app'
 ]
 
-# REST_FRAMEWORK ={
-#     'DEFAUTL_AUTHENTICATION_CLASSES':(
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     )
-# }
+#biblioteca usada para realizar autenticacao
+REST_FRAMEWORK ={
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
-# SIMPLE_JWT = {
-#     'ACESS_TOKEN_LIFETIME': timedelta(hours=2),
-#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
-# }
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1), #gera um token para voce continuar mexendo sem precisar ficar logando no sistema toda vez
+}
 
 AUTH_USER_MODEL = 'app.Usuario'
 

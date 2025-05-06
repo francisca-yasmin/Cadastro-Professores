@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import Usuario, Disciplina, Ambiente
-from rest_framework_simplejwt.views import TokenObtainPairView
+from .models import Usuario, Disciplina, Ambiente, Sala
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,7 +17,7 @@ class AmbienteSerializer(serializers.ModelSerializer):
         model = Ambiente
         fields = '__all__'
 
-class LoginSerializer(TokenObtainPairView):
+class LoginSerializer(TokenObtainPairSerializer):
     username = serializers.CharField()
     password = serializers.CharField(write_only = True)
 
@@ -33,4 +33,9 @@ class LoginSerializer(TokenObtainPairView):
         }
 
         return data
+
+class SalaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sala
+        fields = '__all__'
     
