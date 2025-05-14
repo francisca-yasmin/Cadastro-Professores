@@ -9,14 +9,6 @@ from .permissions import IsGestor, IsProfessor,  IsDonoOuGestor
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-# def updatee(request, *args, **kwargs, super):
-#     response = super.update(request, *args, **kwargs)
-#         return Response({
-#             'mensagem': 'Usuário atualizado com sucesso!',
-#             'dados': response.data
-#         }, status=status.HTTP_200_OK)
-
-
 # CRUD -> Usuario (professor, gestor)
 class UsuarioListCreate(ListCreateAPIView):
     queryset = Usuario.objects.all()
@@ -118,7 +110,6 @@ class SalaListCreate(ListCreateAPIView):
         if self.request.method == 'GET':
             return [IsAuthenticated()]
         return [IsGestor()]
-
 
 class SalaRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     queryset = Sala.objects.all()

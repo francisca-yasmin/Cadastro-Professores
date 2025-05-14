@@ -79,12 +79,24 @@ WSGI_APPLICATION = 'cadastro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME':'cadastro',
+#         'USER': 'root', #usuario no workbench
+#         'PASSWORD': 'senai', #senha no workbench
+#         'HOST': 'localhost', #endereço
+#         'PORT': '3306'
+#     }
+# }
+
+#banco da bosch -> usuario local
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'cadastro',
         'USER': 'root', #usuario no workbench
-        'PASSWORD': 'senai', #senha no workbench
+        'PASSWORD': 'root', #senha no workbench
         'HOST': 'localhost', #endereço
         'PORT': '3306'
     }

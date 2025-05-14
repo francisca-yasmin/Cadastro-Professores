@@ -4,7 +4,7 @@ from .views import LoginView, UsuarioListCreate, UsuarioRetrieveUpdateDestroy, A
 urlpatterns = [
     path('login/', LoginView.as_view()),   #url de  login
 
-     #urls de usuario
+    #urls de usuario
     path('usuario/', UsuarioListCreate.as_view()),    
     path('usuario/<int:pk>/', UsuarioRetrieveUpdateDestroy.as_view()),
 
