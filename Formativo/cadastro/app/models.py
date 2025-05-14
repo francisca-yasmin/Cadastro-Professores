@@ -53,7 +53,7 @@ class Ambiente(models.Model):
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
     reserva = models.ForeignKey(Sala, on_delete=models.CASCADE)
     professor = models.ForeignKey(Usuario, on_delete=models.CASCADE, limit_choices_to={'tipo': 'P'}) #chave estrangeira da tabela professor
-    disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return f'{self.reserva} - {self.get_periodo_display()}, Do dia {self.dt_inicio} até {self.dt_termino}'
