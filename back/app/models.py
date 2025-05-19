@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 #modelo do professor e/ou gestor -> usuario
 class Usuario(AbstractUser):
+    #campo de multipla escolha para o usuario
     TIPO_CHOICES = [
         ('G', 'Gestor'),
         ('P', 'Professor')
@@ -14,6 +15,7 @@ class Usuario(AbstractUser):
     nascimento = models.DateField(blank=True, null=True)
     data_contratacao = models.DateField()
 
+    #campos obrigatorios para preencher
     REQUIRED_FIELDS = ['ni', 'data_contratacao', 'tipo']
 
     def __str__(self):
@@ -49,9 +51,9 @@ class Ambiente(models.Model):
         ('N', 'Noite'),
         ('I', 'Integral')
     ]
-    periodo = models.CharField(max_length=1, choices=PERIODO, default='M')
+    periodo = models.CharField(max_length=1, choices=PERIODO, default='M') #defalut -> resposta padrão caso o user não forneça uma
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
-    reserva = models.ForeignKey(Sala, on_delete=models.CASCADE)
+    reserva = models.ForeignKey(Sala, on_delete=models.CASCADE) #nome no modelo sala
     professor = models.ForeignKey(Usuario, on_delete=models.CASCADE, limit_choices_to={'tipo': 'P'}) #chave estrangeira da tabela professor
 
 

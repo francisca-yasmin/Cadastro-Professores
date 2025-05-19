@@ -55,6 +55,14 @@ class DisciplinaRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsGestor]
     lookup_field = 'pk'
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object() #busca a disciplina
+        self.perform_destroy(instance) #exclui a disciplina
+        return Response(
+            {"detail": "Disciplina excluída com sucesso."}, #mensagem de sucesso
+            status=status.HTTP_204_NO_CONTENT
+        )
+
 #permite que o professor visualize a lista das disciplinas dos professores
 class DisciplinaProfessorList(ListAPIView):
     serializer_class = DisciplinaSerializer
@@ -88,13 +96,31 @@ class AmbienteRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     serializer_class = AmbienteSerializer
     permission_classes = [IsDonoOuGestor]
 
+    #mensagem depois que eh atualizado com sucesso
+    def update(self, request, *args, **kwargs):
+        response = super().update(request, *args, **kwargs)
+        return Response({
+            'mensagem': 'Ambiente atualizado com sucesso!',
+            'dados': response.data
+        }, status=status.HTTP_200_OK)
+
+
+    #mensagem de sucesso para a exclusão do ambeiente
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object() #busca o ambiente
+        self.perform_destroy(instance) #excluir
+        return Response(
+            {"detail": "Ambiente excluído com sucesso."}, #mensagem de sucesso
+            status=status.HTTP_204_NO_CONTENT
+        )
+
 #ver as reservas feita pelo proprio professor
 class AmbienteProfessorList(ListAPIView):
     serializer_class = AmbienteSerializer
     permission_classes = [IsProfessor]
 
     def get_queryset(self):
-        #filtra reservas daqueele professor que tá fazendo a consulta
+        #filtra reservas daquele professor que tá fazendo a consulta
         return Ambiente.objects.filter(professor=self.request.user)
 
 class LoginView(TokenObtainPairView):
@@ -116,6 +142,7 @@ class SalaRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     serializer_class = SalaSerializer
     permission_classes = [IsGestor]
 
+    #mensagem de except caso a busca da sala pelo id não seja encontrada
     def get_object(self):
         try:
             return super().get_object()

@@ -38,7 +38,7 @@ REST_FRAMEWORK ={
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
-
+#tempo de duração do token de acesso
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1), #gera um token para voce continuar mexendo sem precisar ficar logando no sistema toda vez
@@ -79,28 +79,28 @@ WSGI_APPLICATION = 'cadastro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME':'cadastro',
-#         'USER': 'root', #usuario no workbench
-#         'PASSWORD': 'senai', #senha no workbench
-#         'HOST': 'localhost', #endereço
-#         'PORT': '3306'
-#     }
-# }
-
-#banco da bosch -> usuario local
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'cadastro',
         'USER': 'root', #usuario no workbench
-        'PASSWORD': 'root', #senha no workbench
+        'PASSWORD': 'senai', #senha no workbench
         'HOST': 'localhost', #endereço
         'PORT': '3306'
     }
 }
+
+#banco da bosch -> usuario local
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME':'cadastro',
+#         'USER': 'root', #usuario no workbench
+#         'PASSWORD': 'root', #senha no workbench
+#         'HOST': 'localhost', #endereço
+#         'PORT': '3306'
+#     }
+# }
 
 
 # Password validation
