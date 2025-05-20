@@ -8,11 +8,11 @@ class IsGestor(BasePermission):
     
 class IsProfessor(BasePermission):
     def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.tipo == 'P'
+        return request.user.is_authenticated and request.user.tipo == 'P' #permite acesso ao usuario autenticado como 'p'
     
 class IsDonoOuGestor(BasePermission):
     def has_object_permission(self, request, view, obj):
-        if request.user.tipo == 'G':
+        if request.user.tipo == 'G': #permite acesso autenticado como usuario 'g'
             return True
         return obj.professor == request.user
     

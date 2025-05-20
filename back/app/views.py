@@ -4,8 +4,8 @@ from rest_framework import status
 from rest_framework.exceptions import NotFound
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from .models import Usuario, Disciplina, Ambiente, Sala
-from .serializers import UsuarioSerializer, DisciplinaSerializer, AmbienteSerializer, LoginSerializer, SalaSerializer
-from .permissions import IsGestor, IsProfessor,  IsDonoOuGestor
+from .serializers import UsuarioSerializer, DisciplinaSerializer, AmbienteSerializer, LoginSerializer, SalaSerializer #import dos arquivos serializer
+from .permissions import IsGestor, IsProfessor,  IsDonoOuGestor #import das permissões
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 

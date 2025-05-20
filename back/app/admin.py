@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Usuario, Disciplina, Sala, Ambiente
 from django.contrib.auth.admin import UserAdmin
 
+#campos que irão aparecer no admin ao logar no banco
 class UsuarioAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets +(
         (None, {
@@ -19,8 +20,9 @@ class UsuarioAdmin(UserAdmin):
         }),
     )
 
-admin.site.register(Usuario, UsuarioAdmin)
-admin.site.register(Disciplina)
-admin.site.register(Sala)
-admin.site.register(Ambiente)
+#registra todas as tabelas e os campos que foram criadas no modelo
+admin.site.register(Usuario, UsuarioAdmin) #registrar no banco a tabela usuario
+admin.site.register(Disciplina) #regitra disciplina
+admin.site.register(Sala) #registra sala
+admin.site.register(Ambiente) #registra ambiente
 
