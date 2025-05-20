@@ -14,6 +14,6 @@ Para clonar o repositório você precisa dar um `git clone [link do repositório
 1. Entrar na pasta `back` no VsCode e acessar o terminal que pode ser no próprio VsCode.
 2. No terminal, dentro da pasta do projeto você vai instalar a `env` que vai ser o ambiente virtual onde vai rodar a aplicação.
 3. Com o comando `python -m venv env` você cria a sua env
-4. Após a criação 
+4. Após a criação da env é preciso ativar ela com o comando `env\Scripts\activate`
 
 *readme em desenvolvimento*
