@@ -1,5 +1,5 @@
 # Cadastro Professores
-O projeto conssite em fazer o cadastro de um ambiente estudantil, sendo possivel cadastrar, os usuários que podem existir na aplicação de duas maneiras, como gestor e professor. 
+O projeto consiste em fazer o cadastro de um ambiente estudantil, sendo possivel cadastrar, os usuários que podem existir na aplicação de duas maneiras, como gestor e professor. 
 O gestor pode fazer todo o monitoramento e supervisão do ambiente de forma integral e de livre acesso. O gestor pode atualizar, deletar, criar e visualizar todos os itens das tabelas presentes no banco. O professor pode visualizar apenas o que se diz referente a ele, como o ambiente onde ele irá ministrar a sua aula, assim como a disciplina que pertence a ele.
 
 ## Passo a Passo
@@ -8,8 +8,9 @@ Para rodar a aplicação é necessário fazer algumas checagens.
 2. Se na sua máquina não estiver instalado o banco, realize a instalação acessando a documentação [Instalação MySql (docx)](docs/BCD-Aula01-1-Instalação_MYSQL.docx).
 3. Após realizar toda a configuração do documentto crie uma tabela chamada `cadastro` e execute o comando.
 4. Após criar o banco com todas as tabelas nós vamos para o VisualCode rodar a aplicação.
----
-### No Visual Studio Code 🖥️
+
+
+### No VsCode
 Para clonar o repositório você precisa dar um `git clone [link do repositório]`, depois de clonado nós vamos acessar a pasta do projeto.
 1. Entrar na pasta `back` no VsCode e acessar o terminal que pode ser no próprio VsCode.
 2. No terminal, dentro da pasta do projeto você vai instalar a `env` que vai ser o ambiente virtual onde vai rodar a aplicação.
@@ -30,7 +31,7 @@ Para clonar o repositório você precisa dar um `git clone [link do repositório
      }
 }
 ~~~
-No seu `settings.py` é para parecer algo com isso.
+No seu `settings.py` é para parecer algo assim, caso não exista, você pode copiar e colar, e fazer a alteração e acordo com o banco instalado e configurado na sua máquina.
 
 7. Após essa verificação, com o comando `python .\manage.py runserver` a aplicação vai estar disponivel em um endereço http.
 8. Seguindo os endeços das páginas disponiveis na `urls.py` da aplicação, você conseguirá visualizar todas as funcionalidades do projeto.
