@@ -8,8 +8,8 @@ Para rodar a aplicação é necessário fazer algumas checagens.
 2. Se na sua máquina não estiver instalado o banco, realize a instalação acessando a documentação [Instalação MySql (docx)](docs/BCD-Aula01-1-Instalação_MYSQL.docx).
 3. Após realizar toda a configuração do documentto crie uma tabela chamada `cadastro` e execute o comando.
 4. Após criar o banco com todas as tabelas nós vamos para o VisualCode rodar a aplicação.
-
-### No VsCode
+---
+### No Visual Studio Code 🖥️
 Para clonar o repositório você precisa dar um `git clone [link do repositório]`, depois de clonado nós vamos acessar a pasta do projeto.
 1. Entrar na pasta `back` no VsCode e acessar o terminal que pode ser no próprio VsCode.
 2. No terminal, dentro da pasta do projeto você vai instalar a `env` que vai ser o ambiente virtual onde vai rodar a aplicação.
