@@ -41,8 +41,7 @@ No seu `settings.py` é para parecer algo assim, caso não exista, você pode co
 ### Informações Adicionais 📝
 Seguindo todos esses passos o seu projeto estará rodando da forma correta, mas para testar de forma eficiente, você terá que criar um acesso e logar como um gestor, para ter
 a experiência por completo.
-1. Para criar um usuário você usará o comando `python .\manage.py createsuperuser`, ao executar esse comando, você vai informar os campos que foram pré definidos no `models.py`,
-mas lembre *no tipo de usuário, você terá que colocar 'G' para ser cadastrado no banco como gestor* e conseguir executar todas as funcionalidades do sistema.
+1. Para criar um usuário você usará o comando `python .\manage.py createsuperuser`, ao executar esse comando, você vai informar os campos que foram pré definidos no `models.py`, mas lembre *no tipo de usuário, você terá que colocar 'G' para ser cadastrado no banco como gestor* e conseguir executar todas as funcionalidades do sistema.
 2. Para qualquer modificação feita nas `models.py` do projeto, precisa fazer a migração para o banco novamente
 3. Para fazer as migrações utilize o comando `python .\manage.py makemigrations`, depois o comando `python .\manage.py migrate`.
 4. O seu banco foi atualizado, depois disso, é só rodar o servidor novamente.
@@ -50,6 +49,5 @@ mas lembre *no tipo de usuário, você terá que colocar 'G' para ser cadastrado
 ### Considerações Finais
 Para toda e qualquer dúvida, você pode acessar a documentação completa de todo o projeto no arquivo de [Documentação](https://documenter.getpostman.com/view/41755077/2sB2qZDMw6).
 Esta documentação está localizada no Postman, onde você pode encontrar todas as funcionalidades, exemplos de uso e saidas esperadas.
-Bom desenvolvimento!
 
 **Francisca Yasmin**
