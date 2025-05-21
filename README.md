@@ -10,7 +10,7 @@ Para rodar a aplicação é necessário fazer algumas checagens.
 4. Após criar o banco com todas as tabelas nós vamos para o VisualCode rodar a aplicação.
 
 
-### No VsCode
+### No VisualCode
 Para clonar o repositório você precisa dar um `git clone [link do repositório]`, depois de clonado nós vamos acessar a pasta do projeto.
 1. Entrar na pasta `back` no VsCode e acessar o terminal que pode ser no próprio VsCode.
 2. No terminal, dentro da pasta do projeto você vai instalar a `env` que vai ser o ambiente virtual onde vai rodar a aplicação.
@@ -31,7 +31,13 @@ Para clonar o repositório você precisa dar um `git clone [link do repositório
      }
 }
 ~~~
-No seu `settings.py` é para parecer algo assim, caso não exista, você pode copiar e colar, e fazer a alteração e acordo com o banco instalado e configurado na sua máquina.
+No seu `settings.py` é para parecer algo assim, caso não exista, você pode copiar e colar, e fazer a alteração de acordo com o banco instalado e configurado na sua máquina.
 
 7. Após essa verificação, com o comando `python .\manage.py runserver` a aplicação vai estar disponivel em um endereço http.
-8. Seguindo os endeços das páginas disponiveis na `urls.py` da aplicação, você conseguirá visualizar todas as funcionalidades do projeto.
+8. Seguindo os endereços das páginas disponiveis na `urls.py` da aplicação, você conseguirá visualizar todas as funcionalidades do projeto.
+---
+Seguindo todos esses passos o seu projeto estará rodando da forma correta, mas para testar de forma eficiente, você terá que criar um acesso e logar como um gestor, para ter
+a experiência por completo.
+1. Para criar um usuário você usará o comando `python .\manage.py createsuperuser`, ao executar esse comando, você vai informar os campos que foram pré definidos no `models.py`,
+mas lembre *no tipo de usuário, você terá que colocar 'G' para ser cadastrado no banco como gestor* e conseguir executar todas as funcionalidades do sistema.
+2. Para executar de uma forma melhor eu recomendo o uso da ferramenta Postman, onde é possivel testar todos os endpoinst
