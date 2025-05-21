@@ -5,7 +5,7 @@ O gestor pode fazer todo o monitoramento e supervisão do ambiente de forma inte
 ## Passo a Passo
 Para rodar a aplicação é necessário fazer algumas checagens.
 1. Primeiro verifique se na sua máquina tem instalado o `MySql Workbench`
-2. Se na sua máquina não estiver instalado o banco, realize a instalação acessando a documentação [Instalação MySql (docx)](docs/BCD-Aula01-1-Instalação_MYSQL.docx).
+2. Se na sua máquina não estiver instalado o banco, realize a instalação acessando a documentação [Instalação MySql (docx)](back/docs/BCD-Aula01-1-Instalação_MYSQL.docx).
 3. Após realizar toda a configuração do documentto crie uma tabela chamada `cadastro` e execute o comando.
 4. Após criar o banco com todas as tabelas nós vamos para o VisualCode rodar a aplicação.
 
