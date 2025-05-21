@@ -45,6 +45,7 @@ a experiência por completo.
 2. Para qualquer modificação feita nas `models.py` do projeto, precisa fazer a migração para o banco novamente
 3. Para fazer as migrações utilize o comando `python .\manage.py makemigrations`, depois o comando `python .\manage.py migrate`.
 4. O seu banco foi atualizado, depois disso, é só rodar o servidor novamente.
+5. Verifique se você está dentro da pasta correta, pois os comandos funcionaram apenas dentro da pasta e com o ambiente virtual ativado.
 
 ### Considerações Finais
 Para toda e qualquer dúvida, você pode acessar a documentação completa de todo o projeto no arquivo de [Documentação](https://documenter.getpostman.com/view/41755077/2sB2qZDMw6).
