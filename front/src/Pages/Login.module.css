@@ -1,0 +1,78 @@
+
+.conteiner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.loginForm{
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    background-color: #FFFF;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.titulo{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    text-align: center;
+    color: rgb(222,115,14);
+    margin-bottom: 25px;
+}
+
+.label{
+    padding: 15px;
+    font-size: 5px;
+    color: rgb(80,80,79);
+    font-size: 14px;
+    margin: 5px;
+}
+
+.inputField{
+    padding: 10px;
+    font-size: 16px;
+    color: rgb(50,50,50);
+    width: 100%;
+    border: 1px solid #cccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+.inputField :: ::placeholder{
+    color: rgb(150,150,150);
+}
+
+.submitButton{
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(251,152,60,0);
+    font-size: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+    margin-top: 30px;
+    border-radius: 8px;
+    border: none;
+    color: #cccc;
+    cursor: pointer;
+    transition: background-color 0.3 ease;
+}
+
+.submitButton{
+    background-color: rgba(222,155,114,0.9);
+}
+
+.error{
+    color: #dc3545;
+    font-size: 13px;
+    margin-top: 5px;
+}
