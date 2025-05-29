@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .conteiner{
     display: flex;
@@ -6,11 +7,16 @@
     height: 80vh;
 }
 
+.conteiner img{
+    width: 40px;
+    height: 40px;
+}
+
 .loginForm{
     width: 100%;
     max-width: 500px;
     height: auto;
-    background-color: #FFFF;
+    background-color: #F4F4F4;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -23,8 +29,11 @@
 .titulo{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
-    text-align: center;
-    color: rgb(222,115,14);
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    /* text-align: center; */
+    color: black;
     margin-bottom: 25px;
 }
 
@@ -40,35 +49,38 @@
     padding: 10px;
     font-size: 16px;
     color: rgb(50,50,50);
-    width: 100%;
+    width: 90%;
     border: 1px solid #cccc;
     border-radius: 8px;
     box-sizing: border-box;
     margin: 5px;
 }
 
-.inputField :: ::placeholder{
+.inputField::placeholder{
     color: rgb(150,150,150);
 }
 
 .submitButton{
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(251,152,60,0);
+    width: 50%;
+    font-family: 'Poppins';
     font-size: 16px;
-    font-size: 16px;
-    font-weight: bold;
     padding: 12px;
     margin-top: 30px;
     border-radius: 8px;
     border: none;
-    color: #cccc;
+    color: black;
     cursor: pointer;
     transition: background-color 0.3 ease;
 }
 
 .submitButton{
-    background-color: rgba(222,155,114,0.9);
+    background-color: #89AAC3;
+}
+
+.botao{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .error{
