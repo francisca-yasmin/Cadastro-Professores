@@ -17,7 +17,7 @@
     max-width: 500px;
     height: auto;
     background-color: #F4F4F4;
-    padding: 30px;
+    padding: 10px 10px 5px 10px;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -29,27 +29,51 @@
 .titulo{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
-    display: flex;
-    /* justify-content: center; */
+    /* display: flex; */
+    /* justify-content: center;
     align-items: center;
-    /* text-align: center; */
+    text-align: center; */
     color: black;
     margin-bottom: 25px;
 }
 
-.label{
+/* .label{
     padding: 15px;
     font-size: 5px;
     color: rgb(80,80,79);
     font-size: 14px;
     margin: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+} */
+
+/* .label {
+    padding: 15px;
+    font-size: 14px;
+    color: rgb(80, 80, 79);
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+} */
+
+.usuario{
+    display: flex;
+
+}
+
+
+
+.conteiner img{
+    font-size: 16px;
 }
 
 .inputField{
     padding: 10px;
     font-size: 16px;
     color: rgb(50,50,50);
-    width: 90%;
+    width: 70%;
     border: 1px solid #cccc;
     border-radius: 8px;
     box-sizing: border-box;

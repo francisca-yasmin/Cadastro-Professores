@@ -60,14 +60,22 @@ export function Login() {
     return (
         <div className={estilos.conteiner}>
             <form onSubmit={handleSubmit(obterDadosFormulario)} className={estilos.loginForm}>
-                <img src={pixell} />
+                
                 <h1 className={estilos.titulo}> Login </h1>
-                <img src={professor} />
-                <input
-                    {...register('username')}
-                    placeholder='francisca yasmin'
-                    className={estilos.inputField}
-                />
+
+                <div className={estilos.usuario}> 
+
+                    <label> 
+                        <img src={professor} />
+                    </label>
+
+                    <input className={estilos.inputField}
+                        {...register('username')}
+                        placeholder='francisca yasmin'
+                    />
+                
+                </div>
+                
                 {errors.username && <p className={estilos.error}>{errors.username.message}</p>}
  
                 <img src={senha} />

@@ -7,13 +7,17 @@ import gestor from '../assets/gestor.png';
 import { Link } from 'react-router-dom'; //navegaçao
 
 export function Menu(){
+    const tipo = localStorage.getItem('tipo');
+    const linkDisciplina = tipo === 'P' ? 'discProfessor' : 'disciplina';
+
+
     return(
         <div className={estilos.conteiner}>
             <table>
                 <tbody>
                     <tr>  {/*tr -> linhas e td são as celulas dentro da linha que pode ser chamada de coluna*/ }
                         <td>
-                            <Link to='discprofessor'>
+                            <Link to={linkDisciplina}>
                                 <img src={disciplina} />
                                 <label alt='Disciplinas do professor'>Disciplinas</label>
                             </Link>
