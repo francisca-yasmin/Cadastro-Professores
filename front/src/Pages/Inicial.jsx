@@ -7,7 +7,12 @@ export function Inicial(){
         <>
             <BarraNavegacao/>
             <Cabecalho/>
-            <Outlet/>
+    
+
+            <main>
+               
+            </main>
+           <Outlet/>
         </>
     )
 }

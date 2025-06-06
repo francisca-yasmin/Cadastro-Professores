@@ -4,6 +4,7 @@ import add from '../assets/add.png';
 import canetinha from '../assets/canetinha.png';
 import del from '../assets/del.png';
 import estilos from './Visualizar.module.css';
+import { Link } from "react-router-dom";
 
 
 export function Disciplina(){
@@ -39,7 +40,7 @@ export function Disciplina(){
             //variavel que eu tô criando agora
             const professorPorId ={};
             response.data.forEach(prof =>{
-                professorPorId[prof.id] = `${prof.first_name} ${prof.last_name}`;
+                professorPorId[prof.id] = `${prof.username}`;
             });
             setProfessores(professorPorId);
         })
@@ -53,7 +54,7 @@ export function Disciplina(){
         <main className={estilos.container}>
             <h3 className={estilos.titulo}> Disciplinas </h3>
             <div className={estilos.topoAcoes}>
-                <p> Adicionar </p>
+                {/* botao de adicionar */}
                 <img className={estilos.iconeAdd} src={add} alt="adicionar disciplina" />
             </div>
 
@@ -79,9 +80,13 @@ export function Disciplina(){
                             <td> {disciplina.ch} </td>
                             <td> {professores[disciplina.professor]} </td>
 
-                            <td>
-                                <img className={estilos.icone} src={canetinha} />
-                                <img className={estilos.icone} src={del} />
+                            <td className={estilos.acoes}>
+                            {/* Passo para o "param" o id do item que posso editar e excluir */}
+                                <Link to={`/inicial/disciplina/editar/${disciplina.id}`}>
+                                    <img src={canetinha} className={estilos.icone}/>
+                                </Link>
+                                <img src={del} alt="Excluir" className={estilos.icone}
+                                    onClick={() => handleDelete(disciplina.id)}/>                                  
                             </td>
                             </tr>
                         ))}

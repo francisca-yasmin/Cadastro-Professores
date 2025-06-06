@@ -4,6 +4,7 @@ import { Inicial } from '../Pages/Inicial';
 import { Menu } from '../Componentes/Menu'; 
 import { DisciplinaP } from '../Pages/DisciplinasP';
 import { Disciplina } from '../Pages/Disciplina';
+import { DisciplinaEditar } from '../Pages/DisciplinaEditar';
 
 export function Rotas(){
     return(
@@ -13,6 +14,7 @@ export function Rotas(){
             <Route path='/inicial' element={<Inicial/>}>
                 <Route index element={<Menu/>}/>
                 <Route path = 'discprofessor' element ={<DisciplinaP/>}/>
+                <Route path = 'editar/:id' element ={<DisciplinaEditar/>}/>
                 <Route path = 'disciplina' element = {<Disciplina/>} />
             </Route>
         </Routes>
