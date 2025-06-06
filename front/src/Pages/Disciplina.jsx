@@ -1,8 +1,8 @@
 import axios from "axios"; //bater numa url do back
 import React, {useState, useEffect} from 'react';
-import add from '../assets/add.png';
-import canetinha from '../assets/canetinha.png';
-import del from '../assets/del.png';
+import add from '../assets/images/add.png';
+import canetinha from '../assets/images/canetinha.png';
+import del from '../assets/images/del.png';
 import estilos from './Visualizar.module.css';
 import { Link } from "react-router-dom";
 

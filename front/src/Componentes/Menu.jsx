@@ -1,9 +1,11 @@
 import estilos from './Menu.module.css';
 // imports dos icones do menu na tela inicial
-import ambiente from '../assets/ambiente.png';
-import disciplina from '../assets/disciplina.png';
-import professor from '../assets/professor.svg';
-import gestor from '../assets/gestor.png';
+import ambientes from '../assets/images/ambientes.png';
+import disciplinas from '../assets/images/disciplinas.png';
+import professor from '../assets/images/professor.png';
+import gestor from '../assets/images/gestor.png';
+
+
 import { Link } from 'react-router-dom'; //navegaçao
 
 export function Menu(){
@@ -12,38 +14,48 @@ export function Menu(){
 
 
     return(
-        <div className={estilos.conteiner}>
-            <table>
-                <tbody>
-                    <tr>  {/*tr -> linhas e td são as celulas dentro da linha que pode ser chamada de coluna*/ }
-                        <td>
-                            <Link to={linkDisciplina}>
-                                <img src={disciplina} />
-                                <label alt='Disciplinas do professor'>Disciplinas</label>
-                            </Link>
-                        </td>
+        <>
+            <header className={estilos.conteiner}>
 
-                        <td>
-                            <img src={ambiente} />
-                            <label>Ambiente</label>
-                        </td>
+                {/* filtro de professores */}
+                <Link>
+                    <div className={estilos.icones}>
+                        <img src={professor} alt="icone de professor" />
+                    </div>
+                        <p> Professores </p>
+                </Link>
+            
+                {/* filtro de gestor */}
+                <Link>
+                    <div className={estilos.icones}>
+                        <img src={gestor} alt="icone de gestor" />
+                    </div>
+                        <p> Gestores </p>
 
-                        <tr>
-                            <td>
-                                <img src={professor} />
-                                <label>Professores</label>
-                            </td>
+                </Link>
 
-                            <td>
-                                <img src={gestor} />
-                                <label> Gestores </label>
-                            </td>
-                        </tr>
-                    
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                    {/* filtro de ambientes */}
+                <Link>
+                    <div className={estilos.icones}>
+                        <img src={ambientes} alt="icone de ambiente" />
+                    </div>
+                    <p> Ambientes </p>
+                </Link>
+
+                {/* filtro de disciplinas */}
+                <Link to={linkDisciplina}>
+                    <div className={estilos.icones}>
+                        <img src={disciplinas} alt="icone de disciplina" />
+                    </div>
+                        <p> Disciplinas </p>
+
+                </Link>
+            </header>
+
+            <main>
+
+            </main>
+        </>
     )
 }
 

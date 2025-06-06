@@ -5,9 +5,9 @@ import estilos from './Login.module.css';
 import { useForm } from "react-hook-form"; //validação daquilo que foi importado -> antes de mandar pro back
 import { z } from "zod";
 import { zodResolver } from '@hookform/resolvers/zod';
-import professor from '.././assets/professor.svg';
+import professor from '.././assets/images/professor.png';
 import senha from '.././assets/senha.svg';
-import pixell from '.././assets/pixell.png';
+
  
 const schemaLogin = z.object({
     username: z.string()
