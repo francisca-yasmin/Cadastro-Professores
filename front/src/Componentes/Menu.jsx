@@ -18,7 +18,7 @@ export function Menu(){
             <header className={estilos.conteiner}>
 
                 {/* filtro de professores */}
-                <Link>
+                <Link className={estilos.link}>
                     <div className={estilos.icones}>
                         <img src={professor} alt="icone de professor" />
                     </div>
@@ -26,7 +26,7 @@ export function Menu(){
                 </Link>
             
                 {/* filtro de gestor */}
-                <Link>
+                <Link className={estilos.link}>
                     <div className={estilos.icones}>
                         <img src={gestor} alt="icone de gestor" />
                     </div>
@@ -35,7 +35,7 @@ export function Menu(){
                 </Link>
 
                     {/* filtro de ambientes */}
-                <Link>
+                <Link className={estilos.link}>
                     <div className={estilos.icones}>
                         <img src={ambientes} alt="icone de ambiente" />
                     </div>
@@ -43,7 +43,7 @@ export function Menu(){
                 </Link>
 
                 {/* filtro de disciplinas */}
-                <Link to={linkDisciplina}>
+                <Link to={linkDisciplina} className={estilos.link}>
                     <div className={estilos.icones}>
                         <img src={disciplinas} alt="icone de disciplina" />
                     </div>
@@ -51,10 +51,6 @@ export function Menu(){
 
                 </Link>
             </header>
-
-            <main>
-
-            </main>
         </>
     )
 }

@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { ca } from 'zod/v4/locales';
+import estilos from './Cadastrar.module.css'; 
 
 const schemaDisciplina = z.object({
     nome: z.string()
@@ -14,7 +14,7 @@ const schemaDisciplina = z.object({
         .min(1, 'Informe o curso')
         .max(100, 'Informe no maximo 100 caracteres'),
 
-    ch: z.ZodNumber(
+    ch: z.number(
         {invalid_type_error: 'Informe a carga horaria do curso.'})
         .int("Digite um valor inteiro por favor")
         .min(1, 'Informe um valor')
@@ -38,6 +38,7 @@ export function DisciplinaCadastrar(){
         register,
         handleSubmit,
         formState: {errors},
+        reset
     } = useForm ({
         resolver: zodResolver(schemaDisciplina)
     });
@@ -68,7 +69,7 @@ export function DisciplinaCadastrar(){
         try{
             const token = localStorage.getItem('access_token');
             const  response = await axios.post(
-                'http:/127.0.0.1:8000/api/disciplinas',
+                'http://127.0.0.1:8000/api/disciplinas/',
                 data,{
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -82,8 +83,75 @@ export function DisciplinaCadastrar(){
             console.log("erro", error)
             alert("Erro ao cadastrar")
         }
-
         
     }
+
+    return(
+        <div className={estilos.conteiner}>
+            
+        <form className={estilos.loginForm} onSubmit={handleSubmit(obterDadosFormulario)}>
+                <h2 className={estilos.titulo}>Cadastro de Disciplina</h2>
+                <label className ={estilos.nomeCampo} >Nome da Disciplina</label>
+                <input                        
+                    className={estilos.inputField}
+                    {...register('nome')}
+                    placeholder="Materia"
+                />
+                {errors.nome && <p className={estilos.error}>{errors.nome.message}</p>}
+            
+
+                <label className ={estilos.nomeCampo}>Nome do curso</label>
+                <input
+                    className={estilos.inputField}
+                    {...register('curso')}
+                    placeholder="Desenvolvimento de Sistema"
+                />
+                {errors.curso && <p className={estilos.error}>{errors.curso.message}</p>}
+            
+
+                <label className ={estilos.nomeCampo}>Carga horária</label>
+                <input
+                type="number"
+
+                    className={estilos.inputField}
+                    {...register('ch', { valueAsNumber: true })}
+                    placeholder="75"
+                />
+                {errors.cargaHoraria &&
+                <p className={estilos.error}>
+                    {errors.ch.message}
+                </p>}
+            
+
+            <label className ={estilos.nomeCampo}>Descrição</label>
+            <textarea
+                className={estilos.inputField}
+                {...register('desc')}
+                placeholder="Descreva o curso com até 2000 caracteres"
+                rows={5}
+                />
+                {errors.desc && <p className={estilos.error}>{errors.desc.message}</p>}
+            
+                <label className ={estilos.nomeCampo}>Professor</label>
+                <select className={estilos.inputField}
+                {...register('professor', { valueAsNumber: true })}>
+                    <option  value="">Selecione um professor</option>
+                    {professores.map((prof) => (
+                        <option className={estilos.inputField} key={prof.id} value={prof.id}>
+                            {prof.first_name} {prof.last_name}
+                        </option>
+                    ))}
+                </select>
+                {errors.professor && <p className={estilos.error}>{errors.professor.message}</p>}
+            
+
+            <div className={estilos.icones}>
+                <button className={estilos.submitButton} type="submit">
+                    Cadastrar
+                </button>
+            </div>
+        </form>
+    </div>
+    );
 }
 

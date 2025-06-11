@@ -5,8 +5,8 @@ import estilos from './Login.module.css';
 import { useForm } from "react-hook-form"; //validação daquilo que foi importado -> antes de mandar pro back
 import { z } from "zod";
 import { zodResolver } from '@hookform/resolvers/zod';
-import professor from '.././assets/images/professor.png';
 import senha from '.././assets/senha.svg';
+import person1 from '../assets/images/person1.png';
 
  
 const schemaLogin = z.object({
@@ -61,34 +61,38 @@ export function Login() {
         <div className={estilos.conteiner}>
             <form onSubmit={handleSubmit(obterDadosFormulario)} className={estilos.loginForm}>
                 
-                <h1 className={estilos.titulo}> Login </h1>
+                <h2 className={estilos.titulo}> Login </h2>
 
                 <div className={estilos.usuario}> 
 
                     <label> 
-                        <img src={professor} />
+                        <img src={person1} />
                     </label>
 
                     <input className={estilos.inputField}
                         {...register('username')}
                         placeholder='francisca yasmin'
-                    />
-                
+                        />  
                 </div>
                 
-                {errors.username && <p className={estilos.error}>{errors.username.message}</p>}
+                    {errors.username && <p className={estilos.error}>{errors.username.message}</p>}
  
+                    
+                <div className={estilos.usuario} >
+
                 <img src={senha} />
                 <input
                     {...register('password')}  //registrando a senha do usuário e checando 
                     placeholder='Senha'
                     type="password"
                     className={estilos.inputField}
-                />
+                    />
+                </div>
+
                 {errors.password && <p className={estilos.error}>{errors.password.message}</p>} {/*mensagem de erro caso dê errado a autenticação*/}
                 
                 <div className={estilos.botao}>
-                    <button type="submit" className={estilos.submitButton}>Entrar</button>
+                    <button type="submit">Entrar</button>
                 </div>
             </form>
         </div>

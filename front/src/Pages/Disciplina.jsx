@@ -55,7 +55,9 @@ export function Disciplina(){
             <h3 className={estilos.titulo}> Disciplinas </h3>
             <div className={estilos.topoAcoes}>
                 {/* botao de adicionar */}
-                <img className={estilos.iconeAdd} src={add} alt="adicionar disciplina" />
+                <Link to="/inicial/cadastrar">
+                    <img className={estilos.iconeAdd} src={add} alt="adicionar disciplina" />
+                </Link>
             </div>
 
             <div className={estilos.tableWrapper}>
@@ -82,7 +84,7 @@ export function Disciplina(){
 
                             <td className={estilos.acoes}>
                             {/* Passo para o "param" o id do item que posso editar e excluir */}
-                                <Link to={`/inicial/disciplina/editar/${disciplina.id}`}>
+                                <Link to={`/inicial/editar/${disciplina.id}`}>
                                     <img src={canetinha} className={estilos.icone}/>
                                 </Link>
                                 <img src={del} alt="Excluir" className={estilos.icone}

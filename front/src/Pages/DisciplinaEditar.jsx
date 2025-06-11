@@ -5,6 +5,7 @@ import axios from 'axios';
 // import estilos from './Cadastrar.module.css';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import estilos from './Editar.module.css';
  
 const schemaDisciplina = z.object({
     nome: z.string()
@@ -97,7 +98,7 @@ export function DisciplinaEditar() {
         <div className={estilos.conteiner}>
            
             <form className={estilos.loginForm} onSubmit={handleSubmit(obterDadosFormulario)}>
-                    <h2 className={estilos.titulo}>Cadastro de Disciplina</h2>
+                    <h2 className={estilos.titulo}>Editar Disciplina</h2>
                     <label className ={estilos.nomeCampo} >Nome da Disciplina</label>
                     <input                        
                         className={estilos.inputField}

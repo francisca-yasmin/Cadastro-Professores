@@ -63,7 +63,7 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
     text-align:  center;
-    color: #e0a423;
+    color: #000;
     margin-bottom: 24px;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .tabeladados thead{
-    background-color: #69845f;
+    background-color: #CAF0F8;
     color: #f9f9f9;
     font-weight: bold;
     text-transform: uppercase;
@@ -99,12 +99,12 @@
     word-wrap: break-word;
 }
 
-.tabeladados tr:hover{
+/* .tabeladados tr:hover{
     background-color: #ffffff;
-    transform: scale(1.01);
+  
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    transition: all 0.2 ease-in-out;
-}
+   
+} */
 
 .icone{
     width: 20px;

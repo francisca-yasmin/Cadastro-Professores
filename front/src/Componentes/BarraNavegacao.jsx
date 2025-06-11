@@ -5,19 +5,19 @@ export function BarraNavegacao(){
     return(
         <nav className={estilos.conteiner}>
             <ul>
-                <Link to={`/inicial`}>
+                <Link to={`/inicial`} className={estilos.link}>
                     <li>Home</li>
                 </Link>
 
-                <Link>
+                <Link className={estilos.link}>
                     <li>Professores</li>
                 </Link>
                     
-                <Link to={`disciplina/`}>
+                <Link to={`disciplina/`} className={estilos.link}>
                     <li>Disciplinas</li>
                 </Link>
 
-                <Link>
+                <Link className={estilos.link}>
                     <li>Reservas de Ambiente</li>
                 </Link>
             </ul>
