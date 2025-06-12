@@ -6,6 +6,11 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import estilos from './Editar.module.css';
+import disc from '../assets/images/disc.png'; //nome da disciplina
+import curso from '../assets/images/curso.png'; // nome do curso
+import carga_horaria from '../assets/images/carga_horaria.png'; // carga horaria
+import descricao from '../assets/images/descricao.png'; // descricao
+import person1 from '../assets/images/person1.png';
  
 const schemaDisciplina = z.object({
     nome: z.string()
@@ -99,63 +104,91 @@ export function DisciplinaEditar() {
            
             <form className={estilos.loginForm} onSubmit={handleSubmit(obterDadosFormulario)}>
                     <h2 className={estilos.titulo}>Editar Disciplina</h2>
-                    <label className ={estilos.nomeCampo} >Nome da Disciplina</label>
-                    <input                        
-                        className={estilos.inputField}
-                        {...register('nome')}
-                        placeholder="Materia"
-                    />
+
+                    <div className={estilos.campo}>
+
+                        <label className ={estilos.icone}>
+                            <img src={disc} />
+                        </label>
+
+                        <input                        
+                            className={estilos.inputField}
+                            {...register('nome')}
+                            placeholder="Materia"
+                            />
+                    </div>
                     {errors.nome && <p className={estilos.error}>{errors.nome.message}</p>}
                
- 
-                    <label className ={estilos.nomeCampo}>Nome do curso</label>
-                    <input
-                        className={estilos.inputField}
-                        {...register('curso')}
-                        placeholder="Desenvolvimento de Sistema"
-                    />
+                    {/* campo de curso */}
+                    <div className={estilos.campo}>
+
+                        <label className ={estilos.icone}>
+                            <img src={curso} />
+                        </label>
+
+                        <input
+                            className={estilos.inputField}
+                            {...register('curso')}
+                            placeholder="Desenvolvimento de Sistema"
+                            />
+                    </div>
                     {errors.curso && <p className={estilos.error}>{errors.curso.message}</p>}
                
- 
-                    <label className ={estilos.nomeCampo}>Carga horária</label>
-                    <input
-                     type="number"
-   
+                    <div className={estilos.campo}>
+
+                        <label className ={estilos.icone}>
+                            <img src={carga_horaria} />
+                        </label>
+
+                        <input
+                        type="number"
+                        
                         className={estilos.inputField}
                         {...register('cargaHoraria', { valueAsNumber: true })}
                         placeholder="75"
-                    />
+                        />
+                    </div>
                     {errors.cargaHoraria &&
                     <p className={estilos.error}>
                         {errors.cargaHoraria.message}
                     </p>}
                
- 
-                <label className ={estilos.nomeCampo}>Descrição</label>
-                <textarea
-                    className={estilos.inputField}
-                    {...register('descricao')}
-                    placeholder="Descreva o curso com até 2000 caracteres"
-                    rows={5}
-                    />
-                    {errors.descricao && <p className={estilos.error}>{errors.descricao.message}</p>}
-               
-                    <label className ={estilos.nomeCampo}>Professor</label>
-                    <select className={estilos.inputField}
-                    {...register('professor', { valueAsNumber: true })}>
-                        <option  value="">Selecione um professor</option>
-                        {professores.map((prof) => (
-                            <option className={estilos.inputField} key={prof.id} value={prof.id}>
-                                {prof.first_name} {prof.last_name}
-                            </option>
-                        ))}
-                    </select>
+                <div className={estilos.campo}>
+
+                     <label className ={estilos.icone}>
+                        <img src={descricao} />
+                    </label>
+
+                    <textarea
+                        className={estilos.inputField}
+                        {...register('descricao')}
+                        placeholder="Descreva o curso com até 2000 caracteres"
+                        rows={5}
+                        />
+                </div>
+                        {errors.descricao && <p className={estilos.error}>{errors.descricao.message}</p>}
+                
+                <div className={estilos.campo}>
+                        <label className={estilos.icone}>
+                            <img src={person1} />
+                        </label>
+
+                        <select className={estilos.inputField}
+                        {...register('professor', { valueAsNumber: true })}>
+                            <option  value="">Selecione um professor</option>
+                            {professores.map((prof) => (
+                                <option className={estilos.inputField} key={prof.id} value={prof.id}>
+                                    {prof.first_name} {prof.last_name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                     {errors.professor && <p className={estilos.error}>{errors.professor.message}</p>}
                
  
                 <div className={estilos.icones}>
                     <button className={estilos.submitButton} type="submit">
-                        Cadastrar
+                        Editar
                     </button>
                 </div>
             </form>

@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom'; //navegaçao
 export function Menu(){
     const tipo = localStorage.getItem('tipo');
     const linkDisciplina = tipo === 'P' ? 'discProfessor' : 'disciplina';
+    const ambiente = tipo === 'P' ? 'ambienteProfessor' : 'ambiente';
+
 
 
     return(
@@ -35,7 +37,7 @@ export function Menu(){
                 </Link>
 
                     {/* filtro de ambientes */}
-                <Link className={estilos.link}>
+                <Link to={ambiente} className={estilos.link}>
                     <div className={estilos.icones}>
                         <img src={ambientes} alt="icone de ambiente" />
                     </div>

@@ -1,3 +1,6 @@
+
+/* css de disciplinaP */
+
 .conteinerCard{
     width: 100%;
     max-width: 1000px;
@@ -50,9 +53,9 @@
     justify-content: center;
     align-items: center;
     height: auto;
-    width: 90%;
+    width: 50%;
     margin: 40px auto;
-    background-color: #f9f9f9;
+    background-color: #eeecec;
     flex-direction: column;
     border-radius: 16px;
     padding: 20px;
@@ -99,17 +102,11 @@
     word-wrap: break-word;
 }
 
-/* .tabeladados tr:hover{
-    background-color: #ffffff;
-  
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-   
-} */
-
 .icone{
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     padding: 5px;   
+    cursor: pointer;
 }
 
 .topoAcoes{
@@ -119,21 +116,11 @@
     margin-bottom: 15px;
 }
 
-.botaoadicionar{
-    display: flex;
-    align-items: center;
-    background-color: #e0a423;
-    color: #ddd;
-    text-decoration: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
 
 .iconeAdd{
     width: 20px;
     height: 20px;
     margin-right: 8px;
     cursor: pointer;
+    color: black;
 }

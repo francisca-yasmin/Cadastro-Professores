@@ -37,6 +37,12 @@ class UsuarioRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
         return Response({
             'mensagem': 'Usuário deletado com sucesso!'
         }, status=status.HTTP_204_NO_CONTENT)
+    
+#classe pra filtrar somente os professores na tela de cadastro de disciplinas
+class UsuarioProfessorListAPIView(ListAPIView):
+    queryset = Usuario.objects.filter(tipo = 'P')
+    serializer_class = UsuarioSerializer
+    permission_classes = [IsGestor]
 
 # CRUD -> disciplina
 class DisciplinaListCreate(ListCreateAPIView):

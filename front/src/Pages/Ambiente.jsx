@@ -7,20 +7,19 @@ import estilos from './Visualizar.module.css';
 import { Link } from "react-router-dom";
 
 
-export function Disciplina(){
+export function Ambientes(){
     const [disciplinas, setDisciplinas] = useState([]);
     const [professores , setProfessores] = useState([]);
 
     useEffect(()=>{
         const token = localStorage.getItem('access_token');
 
-        axios.get('http://127.0.0.01:8000/api/disciplinas/',{
+        axios.get('http://127.0.0.01:8000/api/ambientes/',{
             headers:{
                 'Authorization': `Bearer ${token}`
             }
             
         })
-
         // se der certo (200) quero popular a minah variavel disciplina com os dados da API
         .then(response =>{
             setDisciplinas(response.data);
@@ -48,6 +47,44 @@ export function Disciplina(){
         .catch(error =>{
             console.error("erro na busca por professor", error);
         });
+
+        //busca por disciplina 
+        axios.get('http://127.0.0.1:8000/api/disciplinas/',{ //url para pegar os disciplina
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        }) 
+        .then(response =>{
+            //variavel que eu tô criando agora
+            const disciplinaPorID ={};
+            response.data.forEach(disc =>{
+                disciplinaPorID[disc.id] = `${disc.nome}`;
+            });
+            setProfessores(disciplinaPorID);
+        })
+        //se der errado
+        .catch(error =>{
+            console.error("erro na busca por disciplina", error);
+        });
+
+             //busca por sala
+        axios.get('http://127.0.0.1:8000/api/sala/',{ //url para pegar os disciplina
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        }) 
+        .then(response =>{
+            //variavel que eu tô criando agora
+            const salaPorID ={};
+            response.data.forEach(sala =>{
+                salaPorID[sala.id] = `${sala.nome}`;
+            });
+            setProfessores(salaPorID);
+        })
+        //se der errado
+        .catch(error =>{
+            console.error("erro na busca por sala", error);
+        });
     },[])
 
      const handleDelete = (id) => {
@@ -56,18 +93,18 @@ export function Disciplina(){
  
         const token = localStorage.getItem('access_token');
  
-        axios.delete(`http://127.0.0.1:8000/api/disciplinas/${id}/`, {
+        axios.delete(`http://127.0.0.1:8000/api/ambiente/${id}/`, {
             headers: {
             'Authorization': `Bearer ${token}`
             }
         })
         .then(() => {
-            alert('Disciplina excluída com sucesso!');
+            alert('Ambiente excluído com sucesso!');
             setDisciplinas(prev => prev.filter(dis => dis.id !== id));
         })
         .catch(error => {
-            console.error('Erro ao excluir disciplina:', error);
-            alert('Erro ao excluir a disciplina.');
+            console.error('Erro ao excluir ambiente:', error);
+            alert('Erro ao excluir ambiente.');
         });
     };
 

@@ -4,6 +4,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import estilos from './Cadastrar.module.css'; 
+import person1 from '../assets/images/person1.png';
+import disc from '../assets/images/disc.png'; //nome da disciplina
+import curso from '../assets/images/curso.png'; // nome do curso
+import carga_horaria from '../assets/images/carga_horaria.png'; // carga horaria
+import descricao from '../assets/images/descricao.png'; // descricao
 
 const schemaDisciplina = z.object({
     nome: z.string()
@@ -69,7 +74,7 @@ export function DisciplinaCadastrar(){
         try{
             const token = localStorage.getItem('access_token');
             const  response = await axios.post(
-                'http://127.0.0.1:8000/api/disciplinas/',
+                'http://127.0.0.1:8000/api/professor/disciplinas/',
                 data,{
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -91,61 +96,89 @@ export function DisciplinaCadastrar(){
             
         <form className={estilos.loginForm} onSubmit={handleSubmit(obterDadosFormulario)}>
                 <h2 className={estilos.titulo}>Cadastro de Disciplina</h2>
-                <label className ={estilos.nomeCampo} >Nome da Disciplina</label>
-                <input                        
-                    className={estilos.inputField}
-                    {...register('nome')}
-                    placeholder="Materia"
-                />
+
+                <div className={estilos.campo}>
+                    <label className ={estilos.icone}>
+                        <img src={disc} />
+                    </label>
+
+                    <input                        
+                        className={estilos.inputField}
+                        {...register('nome')}
+                        placeholder="Materia"
+                        />
+                </div>
+
                 {errors.nome && <p className={estilos.error}>{errors.nome.message}</p>}
             
 
-                <label className ={estilos.nomeCampo}>Nome do curso</label>
-                <input
-                    className={estilos.inputField}
-                    {...register('curso')}
-                    placeholder="Desenvolvimento de Sistema"
-                />
+                <div className={estilos.campo}>
+                    <label className ={estilos.icone}>
+                        <img src={curso} />
+                    </label>
+                    <input
+                        className={estilos.inputField}
+                        {...register('curso')}
+                        placeholder="Desenvolvimento de Sistema"
+                        />
+                 </div>
                 {errors.curso && <p className={estilos.error}>{errors.curso.message}</p>}
             
 
-                <label className ={estilos.nomeCampo}>Carga horária</label>
-                <input
-                type="number"
+                <div className={estilos.campo}>
+                    <label className ={estilos.icone}>
+                        <img src={carga_horaria} />
+                    </label>
 
+                    <input
+                    type="number"
+                    
                     className={estilos.inputField}
                     {...register('ch', { valueAsNumber: true })}
                     placeholder="75"
-                />
+                    />
+                </div>
                 {errors.cargaHoraria &&
                 <p className={estilos.error}>
                     {errors.ch.message}
                 </p>}
             
+                <div className={estilos.campo}>
 
-            <label className ={estilos.nomeCampo}>Descrição</label>
-            <textarea
-                className={estilos.inputField}
-                {...register('desc')}
-                placeholder="Descreva o curso com até 2000 caracteres"
-                rows={5}
-                />
+                <label className ={estilos.icone}>
+                    <img src={descricao} />
+                </label>
+
+                <textarea
+                    className={estilos.inputField}
+                    {...register('desc')}
+                    placeholder="Descreva o curso com até 2000 caracteres"
+                    rows={5}
+                    />
+                </div>
                 {errors.desc && <p className={estilos.error}>{errors.desc.message}</p>}
             
-                <label className ={estilos.nomeCampo}>Professor</label>
-                <select className={estilos.inputField}
-                {...register('professor', { valueAsNumber: true })}>
-                    <option  value="">Selecione um professor</option>
-                    {professores.map((prof) => (
-                        <option className={estilos.inputField} key={prof.id} value={prof.id}>
-                            {prof.first_name} {prof.last_name}
-                        </option>
-                    ))}
-                </select>
+                <div className={estilos.campo}>
+
+                    {/* icone que vai dentro do input pro usuario digitar */}
+                    <label className ={estilos.icone}>
+                        <img src={person1} />
+                    </label>
+
+                    <select className={estilos.inputField}
+                    {...register('professor', { valueAsNumber: true })}>
+                        <option  value="">Selecione um professor</option>
+                        {professores.map((prof) => (
+                            <option className={estilos.inputField} key={prof.id} value={prof.id}>
+                                {prof.first_name} {prof.last_name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
                 {errors.professor && <p className={estilos.error}>{errors.professor.message}</p>}
             
 
-            <div className={estilos.icones}>
+            <div>
                 <button className={estilos.submitButton} type="submit">
                     Cadastrar
                 </button>
