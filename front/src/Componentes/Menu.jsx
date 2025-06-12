@@ -14,7 +14,6 @@ export function Menu(){
     const ambiente = tipo === 'P' ? 'ambienteProfessor' : 'ambiente';
 
 
-
     return(
         <>
             <header className={estilos.conteiner}>

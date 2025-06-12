@@ -88,7 +88,7 @@ export function Ambientes(){
     },[])
 
      const handleDelete = (id) => {
-        const confirmar = window.confirm('Tem certeza que deseja excluir esta reserva?');
+        const confirmar = window.confirm('Tem certeza que deseja excluir este ambiente?');
         if (!confirmar) return;
  
         const token = localStorage.getItem('access_token');
