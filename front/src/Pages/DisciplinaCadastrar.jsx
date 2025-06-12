@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import estilos from './Cadastrar.module.css'; 
+import estilos from '../Pages/Cadastrar.module.css'; 
 import person1 from '../assets/images/person1.png';
 import disc from '../assets/images/disc.png'; //nome da disciplina
 import curso from '../assets/images/curso.png'; // nome do curso
@@ -69,12 +69,12 @@ export function DisciplinaCadastrar(){
 
     //retornando os dados para API
     async function obterDadosFormulario(data) {
-        console.log("dados do formulario", data);
+        console.log("Dados do formulario", data);
 
         try{
             const token = localStorage.getItem('access_token');
             const  response = await axios.post(
-                'http://127.0.0.1:8000/api/professor/disciplinas/',
+                'http://127.0.0.1:8000/api/disciplinas/',
                 data,{
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -82,8 +82,9 @@ export function DisciplinaCadastrar(){
                     }
                 }
             );
-            alert("disciplina cadastrada com sucesso");
+            alert("Disciplina cadastrada com sucesso");
             reset();
+
         }catch(error){
             console.log("erro", error)
             alert("Erro ao cadastrar")
@@ -119,7 +120,7 @@ export function DisciplinaCadastrar(){
                     <input
                         className={estilos.inputField}
                         {...register('curso')}
-                        placeholder="Desenvolvimento de Sistema"
+                        placeholder="Curso"
                         />
                  </div>
                 {errors.curso && <p className={estilos.error}>{errors.curso.message}</p>}
@@ -167,7 +168,7 @@ export function DisciplinaCadastrar(){
 
                     <select className={estilos.inputField}
                     {...register('professor', { valueAsNumber: true })}>
-                        <option  value="">Selecione um professor</option>
+                        <option>Selecione um professor</option>
                         {professores.map((prof) => (
                             <option className={estilos.inputField} key={prof.id} value={prof.id}>
                                 {prof.first_name} {prof.last_name}

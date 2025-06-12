@@ -1,28 +1,29 @@
 import axios from "axios"; //bater numa url do back
 import React, {useState, useEffect} from 'react';
-import add from '../assets/images/add.png';
-import canetinha from '../assets/images/canetinha.png';
-import del from '../assets/images/del.png';
-import estilos from './Visualizar.module.css';
+import add from '../../assets/images/add.png';
+import canetinha from '../../assets/images/canetinha.png';
+import del from '../../assets/images/del.png';
+import estilos from '../Visualizar.module.css';
 import { Link } from "react-router-dom";
 
 
-export function Ambientes(){
+export function Ambiente(){
+    const [ambientes, setAmbientes] = useState([]);
     const [disciplinas, setDisciplinas] = useState([]);
-    const [professores , setProfessores] = useState([]);
+    const [professores, setProfessores] = useState([]);
+    const [salas, setSalas] = useState([]);
 
     useEffect(()=>{
         const token = localStorage.getItem('access_token');
 
-        axios.get('http://127.0.0.01:8000/api/ambientes/',{
+        axios.get('http://127.0.0.01:8000/api/ambiente/',{
             headers:{
                 'Authorization': `Bearer ${token}`
-            }
-            
+            }     
         })
         // se der certo (200) quero popular a minah variavel disciplina com os dados da API
         .then(response =>{
-            setDisciplinas(response.data);
+            setAmbientes(response.data);
         })
         // se der ruim
         .catch(error =>{
@@ -60,7 +61,7 @@ export function Ambientes(){
             response.data.forEach(disc =>{
                 disciplinaPorID[disc.id] = `${disc.nome}`;
             });
-            setProfessores(disciplinaPorID);
+            setDisciplinas(disciplinaPorID);
         })
         //se der errado
         .catch(error =>{
@@ -79,7 +80,7 @@ export function Ambientes(){
             response.data.forEach(sala =>{
                 salaPorID[sala.id] = `${sala.nome}`;
             });
-            setProfessores(salaPorID);
+            setSalas(salaPorID);
         })
         //se der errado
         .catch(error =>{
@@ -100,7 +101,7 @@ export function Ambientes(){
         })
         .then(() => {
             alert('Ambiente excluído com sucesso!');
-            setDisciplinas(prev => prev.filter(dis => dis.id !== id));
+            setAmbientes(prev => prev.filter(dis => dis.id !== id));
         })
         .catch(error => {
             console.error('Erro ao excluir ambiente:', error);
@@ -111,10 +112,10 @@ export function Ambientes(){
 
     return(
         <main className={estilos.container}>
-            <h3 className={estilos.titulo}> Disciplinas </h3>
+            <h3 className={estilos.titulo}> Ambientes </h3>
             <div className={estilos.topoAcoes}>
                 {/* botao de adicionar */}
-                <Link to="/inicial/cadastrar">
+                <Link to="/inicial/cadastroAmbiente">
                     <img className={estilos.iconeAdd} src={add} alt="adicionar disciplina" />
                 </Link>
             </div>
@@ -124,31 +125,33 @@ export function Ambientes(){
                     <thead>
                         <tr>
                             {/* titulo da coluna */}
-                            <th> Nome </th>
-                            <th> Curso </th>
-                            <th> Descrição </th>
-                            <th> Carga Horária </th>
+                            <th> Data inicio </th>
+                            <th> Data Final </th>
+                            <th> Periodo </th>
+                            <th> Disciplina </th>
+                            <th> Sala </th>
                             <th> Professor </th>
                             <th> Ação </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {disciplinas.map(disciplina =>(
-                            <tr key={disciplina.id}>
-                            <td> {disciplina.nome} </td>
-                            <td> {disciplina.curso} </td>
-                            <td> {disciplina.desc} </td>
-                            <td> {disciplina.ch} </td>
-                            <td> {professores[disciplina.professor]} </td>
+                        {ambientes.map(ambiente =>(
+                            <tr key={ambiente.id}>
+                                <td> {ambiente.dt_inicio} </td>
+                                <td> {ambiente.dt_termino} </td>
+                                <td> {ambiente.periodo} </td>
+                                <td> {ambiente.disciplina} </td>
+                                <td> {ambiente.sala} </td>
+                                <td> {professores[ambiente.professor]} </td>
 
-                            <td className={estilos.acoes}>
-                            {/* Passo para o "param" o id do item que posso editar e excluir */}
-                                <Link to={`/inicial/editar/${disciplina.id}`}>
-                                    <img src={canetinha} className={estilos.icone}/>
-                                </Link>
-                                <img src={del} alt="Excluir" className={estilos.icone}
-                                    onClick={() => handleDelete(disciplina.id)}/>                                  
-                            </td>
+                                <td className={estilos.acoes}>
+                                {/* Passo para o "param" o id do item que posso editar e excluir */}
+                                    <Link to={`/inicial/editAmbiente/${ambiente.id}`}>
+                                        <img src={canetinha} className={estilos.icone}/>
+                                    </Link>
+                                    <img src={del} alt="Excluir" className={estilos.icone}
+                                        onClick={() => handleDelete(ambiente.id)}/>                                  
+                                </td>
                             </tr>
                         ))}
                     </tbody>
