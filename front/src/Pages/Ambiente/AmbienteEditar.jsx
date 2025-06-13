@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import estilos from '../Cadastrar.module.css'; 
 import person1 from '../../assets/images/person1.png';
@@ -47,9 +48,11 @@ const schemaAmbiente = z.object({
 export function AmbienteEditar(){
     const [professores, setProfessores] = useState([]);
     const [disciplinas, setDisciplinas] = useState([]);
+    const { id } = useParams();
     const [salas, setSalas] = useState([]);
-   
+    const navigate = useNavigate();
 
+   
     //fazer valer o zod
     const{
         register,
@@ -57,7 +60,15 @@ export function AmbienteEditar(){
         formState: {errors},
         reset
     } = useForm ({
-        resolver: zodResolver(schemaAmbiente)
+        resolver: zodResolver(schemaAmbiente),
+        defaultValues: {
+           dt_inicio: '',
+           dt_termino: '',
+           periodo: '',
+           disciplina: 0,
+           reserva: 0,
+           professor: 0
+        }
     });
 
     useEffect(() => {
@@ -109,9 +120,33 @@ export function AmbienteEditar(){
             }
         }
 
-        buscarProfessores();
-        buscarDisciplinas();
-        buscarSalas(); //chamando minha função para chamar professores
+        async function buscarAmbiente() {
+            try {
+                const token = localStorage.getItem('access_token');
+                const response = await axios.get(`http://127.0.0.1:8000/api/ambiente/${id}/`, {
+                    headers: {
+                         'Authorization': `Bearer ${token}`
+                    }
+                })
+                //popularizando meu form com os dados que vieram da minha API
+                reset({
+                dt_inicio: response.data.dt_inicio,
+                dt_termino: response.data.dt_termino,
+                periodo: response.data.periodo,
+                disciplina: response.data.disciplina,
+                reserva: response.data.reserva,
+                professor: response.data.professor
+            });
+            }catch(error){
+                console.log("Erro ao buscar os dados do Ambiente", error);
+            }
+            
+        }
+
+        buscarProfessores(); //chamando minha função para chamar buscar professores
+        buscarDisciplinas(); //chamando minha função para chamar buscar disciplinas
+        buscarSalas(); //chamando minha função para chamar buscar salas
+        buscarAmbiente(); //chamando a função para buscar por ambiente na API
     }, [])
 
     //retornando os dados para API
@@ -121,7 +156,7 @@ export function AmbienteEditar(){
         try{
             const token = localStorage.getItem('access_token');
             await axios.put(
-                `http://127.0.0.1:8000/api/ambiente/${id}`,
+                `http://127.0.0.1:8000/api/ambiente/${id}/`,
                 data,{
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -129,12 +164,13 @@ export function AmbienteEditar(){
                     }
                 }
             );
-            alert("Ambiente cadastrado com sucesso");
+            alert("Ambiente editado com sucesso");
             reset();
+            navigate('/inicial/ambiente/');
 
         }catch(error){
             console.log("erro", error)
-            alert("Erro ao cadastrar")
+            alert("Erro ao editar")
         }
         
     }
@@ -157,7 +193,7 @@ export function AmbienteEditar(){
                         />
                 </div>
 
-                {errors.nome && <p className={estilos.error}>{errors.dt_inicio.message}</p>}
+                {errors.dt_inicio && <p className={estilos.error}>{errors.dt_inicio.message}</p>}
             
                 <div className={estilos.campo}>
                     <label className ={estilos.icone}>
@@ -171,7 +207,7 @@ export function AmbienteEditar(){
                         />
                 </div>
 
-                {errors.nome && <p className={estilos.error}>{errors.dt_termino.message}</p>}
+                {errors.dt_termino && <p className={estilos.error}>{errors.dt_termino.message}</p>}
 
 
                 {/* Período */}
@@ -179,11 +215,14 @@ export function AmbienteEditar(){
                     <label className={estilos.icone}>
                         <img src={periodo} />
                     </label>
-                  <input                        
-                        className={estilos.inputField}
+                  <select className={estilos.inputField}
                         {...register('periodo')}
-                        placeholder='periodo'
-                        />
+                        >
+                            <option value="">Selecione o período</option>
+                            <option value="M">Manhã</option>
+                            <option value="T">Tarde</option>
+                            <option value="N">Noite</option>
+                    </select>
                 </div>
                 {errors.periodo && <p className={estilos.error}>{errors.periodo.message}</p>}
             
@@ -194,7 +233,7 @@ export function AmbienteEditar(){
                     </label>
 
                     <select className={estilos.inputField}
-                    {...register('disc', { valueAsNumber: true })}>
+                    {...register('disciplina', { valueAsNumber: true })}>
                         <option  value="">Selecione uma disciplina</option>
                         {disciplinas.map((disc) => (
                             <option className={estilos.inputField} key={disc.id} value={disc.id}>
@@ -203,7 +242,7 @@ export function AmbienteEditar(){
                         ))}
                     </select>
                 </div>
-                {errors.disc && <p className={estilos.error}>{errors.disc.message}</p>}
+                {errors.disciplina && <p className={estilos.error}>{errors.disciplina.message}</p>}
 
                 {/* SALA */}
                 <div className={estilos.campo}>
@@ -223,7 +262,7 @@ export function AmbienteEditar(){
                         ))}
                     </select>
                 </div>
-                {errors.sala && <p className={estilos.error}>{errors.sala.message}</p>}
+                {errors.reserva && <p className={estilos.error}>{errors.reserva.message}</p>}
             
             
                 <div className={estilos.campo}>

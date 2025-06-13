@@ -140,8 +140,8 @@ export function Ambiente(){
                                 <td> {ambiente.dt_inicio} </td>
                                 <td> {ambiente.dt_termino} </td>
                                 <td> {ambiente.periodo} </td>
-                                <td> {ambiente.disciplina} </td>
-                                <td> {ambiente.sala} </td>
+                                <td> {disciplinas[ambiente.disciplina]} </td>
+                                <td> {salas[ambiente.sala]} </td>
                                 <td> {professores[ambiente.professor]} </td>
 
                                 <td className={estilos.acoes}>

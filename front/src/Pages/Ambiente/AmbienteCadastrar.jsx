@@ -49,6 +49,7 @@ export function AmbienteCadastrar(){
     const [professores, setProfessores] = useState([]);
     const [disciplinas, setDisciplinas] = useState([]);
     const [salas, setSalas] = useState([]);
+    const navigate = useNavigate();
    
 
     //fazer valer o zod
@@ -180,11 +181,14 @@ export function AmbienteCadastrar(){
                     <label className={estilos.icone}>
                         <img src={periodo} />
                     </label>
-                  <input                        
-                        className={estilos.inputField}
-                        {...register('periodo')}
-                        placeholder='periodo'
-                        />
+                 <select className={estilos.inputField}
+                    {...register('periodo')}
+                    >
+                    <option value="">Selecione o período</option>
+                    <option value="M">Manhã</option>
+                    <option value="T">Tarde</option>
+                    <option value="N">Noite</option>
+                </select>
                 </div>
                 {errors.periodo && <p className={estilos.error}>{errors.periodo.message}</p>}
             
@@ -195,7 +199,7 @@ export function AmbienteCadastrar(){
                     </label>
 
                     <select className={estilos.inputField}
-                    {...register('disc', { valueAsNumber: true })}>
+                    {...register('disciplina', { valueAsNumber: true })}>
                         <option  value="">Selecione uma disciplina</option>
                         {disciplinas.map((disc) => (
                             <option className={estilos.inputField} key={disc.id} value={disc.id}>
@@ -204,7 +208,7 @@ export function AmbienteCadastrar(){
                         ))}
                     </select>
                 </div>
-                {errors.disc && <p className={estilos.error}>{errors.disc.message}</p>}
+                {errors.disciplina && <p className={estilos.error}>{errors.disciplina.message}</p>}
 
                 {/* SALA */}
                 <div className={estilos.campo}>
@@ -224,7 +228,7 @@ export function AmbienteCadastrar(){
                         ))}
                     </select>
                 </div>
-                {errors.sala && <p className={estilos.error}>{errors.sala.message}</p>}
+                {errors.reserva && <p className={estilos.error}>{errors.reserva.message}</p>}
             
             
                 <div className={estilos.campo}>

@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import estilos from '../Pages/Cadastrar.module.css'; 
 import person1 from '../assets/images/person1.png';
@@ -37,6 +38,7 @@ const schemaDisciplina = z.object({
 
 export function DisciplinaCadastrar(){
     const [professores, setProfessores] = useState([]);
+    const navigate = useNavigate();
 
     //fazer valer o zod
     const{
@@ -84,6 +86,7 @@ export function DisciplinaCadastrar(){
             );
             alert("Disciplina cadastrada com sucesso");
             reset();
+            navigate('/inicial/disciplina/') // voltar para a tela de listar disciplinas
 
         }catch(error){
             console.log("erro", error)

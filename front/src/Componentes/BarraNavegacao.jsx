@@ -17,7 +17,7 @@ export function BarraNavegacao(){
                     <li>Disciplinas</li>
                 </Link>
 
-                <Link className={estilos.link}>
+                <Link to={`ambiente/`} className={estilos.link}>
                     <li>Reservas de Ambiente</li>
                 </Link>
             </ul>

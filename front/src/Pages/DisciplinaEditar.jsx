@@ -44,7 +44,14 @@ export function DisciplinaEditar() {
         formState: { errors },
         reset
     } = useForm({
-        resolver: zodResolver(schemaDisciplina)
+        resolver: zodResolver(schemaDisciplina),
+        defaultValues: {
+            nome: '',
+            curso: '',
+            ch: 0,
+            desc: '',
+            professor: ''
+        }
     });
  
     useEffect(() => {
@@ -88,14 +95,14 @@ export function DisciplinaEditar() {
                 }
             );
  
-            console.log('Disciplina cadastrado com sucesso!', response.data);
-            alert('Disciplina cadastrado com sucesso!');
+            console.log('Disciplina editada com sucesso!', response.data);
+            alert('Disciplina editada com sucesso!');
             reset();
             navigate('/inicial/disciplina');
  
         } catch (error) {
-            console.error('Erro ao cadastrar disciplina', error);
-            alert("Erro ao cadastrar disciplina");
+            console.error('Erro ao editar disciplina', error);
+            alert("Erro ao editar disciplina");
         }
     }
  
@@ -144,7 +151,7 @@ export function DisciplinaEditar() {
                         type="number"
                         
                         className={estilos.inputField}
-                        {...register('cargaHoraria', { valueAsNumber: true })}
+                        {...register('ch', { valueAsNumber: true })}
                         placeholder="75"
                         />
                     </div>
@@ -161,7 +168,7 @@ export function DisciplinaEditar() {
 
                     <textarea
                         className={estilos.inputField}
-                        {...register('descricao')}
+                        {...register('desc')}
                         placeholder="Descreva o curso com até 2000 caracteres"
                         rows={5}
                         />
