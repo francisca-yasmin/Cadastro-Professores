@@ -69,7 +69,7 @@ class LoginSerializer(TokenObtainPairSerializer):
             #o filho cria mais tres campos na aplicacao
             'username': self.user.username,
             'email': self.user.email,
-            'tipo': 'self.user.tipo'
+            'tipo': self.user.tipo
         }
 
         return data

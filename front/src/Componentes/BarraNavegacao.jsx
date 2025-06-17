@@ -9,7 +9,7 @@ export function BarraNavegacao(){
                     <li>Home</li>
                 </Link>
 
-                <Link className={estilos.link}>
+                <Link to={`professor/`} className={estilos.link}>
                     <li>Professores</li>
                 </Link>
                     
@@ -19,6 +19,10 @@ export function BarraNavegacao(){
 
                 <Link to={`ambiente/`} className={estilos.link}>
                     <li>Reservas de Ambiente</li>
+                </Link>
+
+                <Link to={`sala/`} className={estilos.link}>
+                    <li> Salas </li>
                 </Link>
             </ul>
         </nav>

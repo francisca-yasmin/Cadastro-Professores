@@ -1,19 +1,20 @@
 import axios from "axios"; //bater numa url do back
 import React, {useState, useEffect} from 'react';
-import add from '../assets/images/add.png';
-import canetinha from '../assets/images/canetinha.png';
-import del from '../assets/images/del.png';
-import estilos from './Visualizar.module.css';
-import { Link } from "react-router-dom";
+import add from '../../assets/images/add.png';
+import canetinha from '../../assets/images/canetinha.png';
+import del from '../../assets/images/del.png';
+import estilos from '../Visualizar.module.css';
+import { Link, useNavigate } from "react-router-dom";
 
 
 export function Professores(){
     const [professores , setProfessores] = useState([]);
+    const navigate= useNavigate();
 
     useEffect(()=>{
         const token = localStorage.getItem('access_token');
 
-        axios.get('http://127.0.0.01:8000/api/usuario/professor',{
+        axios.get('http://127.0.0.1:8000/api/usuario/professor/',{
             headers:{
                 'Authorization': `Bearer ${token}`
             }
@@ -22,62 +23,44 @@ export function Professores(){
 
         // se der certo (200) quero popular a minah variavel disciplina com os dados da API
         .then(response =>{
-            setDisciplinas(response.data);
+            setProfessores(response.data);
         })
         // se der ruim
         .catch(error =>{
             console.error("erro", error);
         });
-
-        //busca dos professores por id
-        axios.get('http://127.0.0.1:8000/api/usuario/professor/',{ //url para pegar os professores
-            headers:{
-                'Authorization': `Bearer ${token}`
-            }
-        }) 
-        .then(response =>{
-            //variavel que eu tô criando agora
-            const professorPorId ={};
-            response.data.forEach(prof =>{
-                professorPorId[prof.id] = `${prof.username}`;
-            });
-            setProfessores(professorPorId);
-        })
-        //se der errado
-        .catch(error =>{
-            console.error("erro na busca por professor", error);
-        });
     },[])
 
      const handleDelete = (id) => {
-        const confirmar = window.confirm('Tem certeza que deseja excluir esta disciplina?');
+        const confirmar = window.confirm('Tem certeza que deseja excluir este professor?');
         if (!confirmar) return;
  
         const token = localStorage.getItem('access_token');
  
-        axios.delete(`http://127.0.0.1:8000/api/disciplinas/${id}/`, {
+        axios.delete(`http://127.0.0.1:8000/api/usuario/${id}/`, {
             headers: {
             'Authorization': `Bearer ${token}`
             }
         })
         .then(() => {
-            alert('Disciplina excluída com sucesso!');
-            setDisciplinas(prev => prev.filter(dis => dis.id !== id));
+            alert('Professor excluído com sucesso!');
+            setProfessores(prev => prev.filter(dis => dis.id !== id));
+            navigate('/inicial/professor')
         })
         .catch(error => {
-            console.error('Erro ao excluir disciplina:', error);
-            alert('Erro ao excluir a disciplina.');
+            console.error('Erro ao excluir professor:', error);
+            alert('Erro ao excluir a professor.');
         });
     };
 
 
     return(
         <main className={estilos.container}>
-            <h3 className={estilos.titulo}> Disciplinas </h3>
+            <h3 className={estilos.titulo}> Pofessores </h3>
             <div className={estilos.topoAcoes}>
                 {/* botao de adicionar */}
                 <Link to="/inicial/cadastrar">
-                    <img className={estilos.iconeAdd} src={add} alt="adicionar disciplina" />
+                    <img className={estilos.iconeAdd} src={add} alt="adicionar um professor novo" />
                 </Link>
             </div>
 
@@ -87,29 +70,32 @@ export function Professores(){
                         <tr>
                             {/* titulo da coluna */}
                             <th> Nome </th>
-                            <th> Curso </th>
-                            <th> Descrição </th>
-                            <th> Carga Horária </th>
-                            <th> Professor </th>
+                            <th> Email </th>
+                            <th> NI </th>
+                            <th> Data de Nascimento </th>
+                            <th> Data de contratação </th>
+                            <th> Telefone </th>
                             <th> Ação </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {disciplinas.map(disciplina =>(
-                            <tr key={disciplina.id}>
-                            <td> {disciplina.nome} </td>
-                            <td> {disciplina.curso} </td>
-                            <td> {disciplina.desc} </td>
-                            <td> {disciplina.ch} </td>
-                            <td> {professores[disciplina.professor]} </td>
+                        {professores.map(professor =>(
+                            <tr key={professor.id}>
+                            <td> {professor.first_name} </td>
+                            <td> {professor.email} </td>
+                            <td> {professor.ni} </td>
+                            <td> {professor.nascimento} </td>
+                            <td> {professor.data_contratacao} </td>
+                            <td> {professor.telefone} </td>
+                           
 
                             <td className={estilos.acoes}>
                             {/* Passo para o "param" o id do item que posso editar e excluir */}
-                                <Link to={`/inicial/editar/${disciplina.id}`}>
+                                <Link to={`/inicial/profedit/${professor.id}`}>
                                     <img src={canetinha} className={estilos.icone}/>
                                 </Link>
                                 <img src={del} alt="Excluir" className={estilos.icone}
-                                    onClick={() => handleDelete(disciplina.id)}/>                                  
+                                    onClick={() => handleDelete(professor.id)}/>                                  
                             </td>
                             </tr>
                         ))}

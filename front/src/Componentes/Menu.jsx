@@ -1,12 +1,12 @@
+
 import estilos from './Menu.module.css';
 // imports dos icones do menu na tela inicial
 import ambientes from '../assets/images/ambientes.png';
 import disciplinas from '../assets/images/disciplinas.png';
 import professor from '../assets/images/professor.png';
 import gestor from '../assets/images/gestor.png';
-
-
 import { Link } from 'react-router-dom'; //navegaçao
+import salaas from '../assets/images/salaas.png';
 
 export function Menu(){
     const tipo = localStorage.getItem('tipo');
@@ -15,27 +15,10 @@ export function Menu(){
 
 
     return(
-        <>
+        
             <header className={estilos.conteiner}>
 
-                {/* filtro de professores */}
-                <Link className={estilos.link}>
-                    <div className={estilos.icones}>
-                        <img src={professor} alt="icone de professor" />
-                    </div>
-                        <p> Professores </p>
-                </Link>
-            
-                {/* filtro de gestor */}
-                <Link className={estilos.link}>
-                    <div className={estilos.icones}>
-                        <img src={gestor} alt="icone de gestor" />
-                    </div>
-                        <p> Gestores </p>
-
-                </Link>
-
-                    {/* filtro de ambientes */}
+                {/* filtro de ambientes */}
                 <Link to={ambiente} className={estilos.link}>
                     <div className={estilos.icones}>
                         <img src={ambientes} alt="icone de ambiente" />
@@ -51,8 +34,35 @@ export function Menu(){
                         <p> Disciplinas </p>
 
                 </Link>
+            
+                {/* filtro de gestor */}
+               {tipo === 'G' && (
+                    <>
+                        <Link to='gestores' className={estilos.link}>
+                            <div className={estilos.icones}>
+                                <img src={gestor} alt="icone de gestor" />
+                            </div>
+                                <p> Gestores </p>
+
+                        </Link>
+
+                        {/* filtro de professores */}
+                        <Link to='professor' className={estilos.link}>
+                            <div className={estilos.icones}>
+                                <img src={professor} alt="icone de professor" />
+                            </div>
+                                <p> Professores </p>
+                        </Link>
+
+                        <Link to='salas' className={estilos.link}>
+                            <div className={estilos.icones}>
+                                <img src={salaas} alt="icone de salas" />
+                            </div>
+                                <p> Salas </p>
+                        </Link>
+                    </>
+               )}
             </header>
-        </>
     )
 }
 

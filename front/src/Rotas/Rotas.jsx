@@ -9,6 +9,8 @@ import { DisciplinaCadastrar } from '../Pages/DisciplinaCadastrar';
 import { Ambiente } from '../Pages/Ambiente/Ambiente';
 import { AmbienteCadastrar } from '../Pages/Ambiente/AmbienteCadastrar';
 import { AmbienteEditar } from '../Pages/Ambiente/AmbienteEditar';
+import { Professores } from '../Pages/Professores/Professores';
+import { ProfessoresEditar } from '../Pages/Professores/ProfessoresEditar';
 
 
 export function Rotas(){
@@ -22,9 +24,13 @@ export function Rotas(){
                 <Route path = 'editar/:id' element ={<DisciplinaEditar/>}/>
                 <Route path = 'disciplina' element = {<Disciplina/>} />
                 <Route path = 'cadastrar' element = {<DisciplinaCadastrar/>}/>
+
                 <Route path = 'ambiente' element = {<Ambiente/>}/>
                 <Route path = 'cadastroAmbiente' element = {<AmbienteCadastrar/>}/>
                 <Route path= 'editAmbiente/:id' element={<AmbienteEditar />} />
+
+                <Route path = 'professor' element ={<Professores/>}/>
+                <Route path = 'profedit/:id' element ={<ProfessoresEditar/>}/>
 
             </Route>
         </Routes>
