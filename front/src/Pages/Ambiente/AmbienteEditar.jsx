@@ -25,10 +25,10 @@ const schemaAmbiente = z.object({
 
     disciplina: z.number({
         invalid_type_error: 'Selecione uma disciplina'})
-    .min(1, 'Selecione um professor'),
+    .min(1, 'Selecione uma disciplina'),
 
   reserva: z.number({
-        invalid_type_error: 'Selecione uma reserva'})
+        invalid_type_error: 'Selecione uma sala'})
     .min(1, 'Selecione uma sala'),
 
   professor: z.number({
@@ -130,12 +130,12 @@ export function AmbienteEditar(){
                 })
                 //popularizando meu form com os dados que vieram da minha API
                 reset({
-                dt_inicio: response.data.dt_inicio,
-                dt_termino: response.data.dt_termino,
-                periodo: response.data.periodo,
-                disciplina: response.data.disciplina,
-                reserva: response.data.reserva,
-                professor: response.data.professor
+                    dt_inicio: response.data.dt_inicio,
+                    dt_termino: response.data.dt_termino,
+                    periodo: response.data.periodo,
+                    disciplina: response.data.disciplina?.id ?? 0,
+                    reserva: response.data.reserva ?? 0, //reserva já é um numero
+                    professor: response.data.professor?.id ?? 0
             });
             }catch(error){
                 console.log("Erro ao buscar os dados do Ambiente", error);

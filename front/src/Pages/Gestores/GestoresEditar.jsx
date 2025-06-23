@@ -110,7 +110,7 @@ export function GestoresEditar(){
                     }
                 }
             );
-            alert("Professor editado com sucesso");
+            alert("Gestor editado com sucesso");
             reset();
             navigate('/inicial/gestores/');
 

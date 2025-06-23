@@ -22,8 +22,16 @@ class DisciplinaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Disciplina
         fields = '__all__'
+        
+class SalaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sala
+        fields = '__all__'
 
 class AmbienteSerializer(serializers.ModelSerializer):
+    sala = SalaSerializer(source = 'reserva', read_only=True)
+    professor = UsuarioSerializer(read_only=True)
+    disciplina = DisciplinaSerializer(read_only=True)
     class Meta:
         model = Ambiente
         fields = '__all__'
@@ -74,8 +82,4 @@ class LoginSerializer(TokenObtainPairSerializer):
 
         return data
 
-class SalaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Sala
-        fields = '__all__'
     

@@ -2,8 +2,9 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import estilos from '../Cadastrar.module.css'; 
+import { useEffect } from 'react';
 // imagens que são utilizadas na página
 import salas from '../../assets/images/salas.png';
 import capacidade from '../../assets/images/capacidade.png';
@@ -23,7 +24,7 @@ const schemaSalas = z.object({
 })
 
 export function SalasEditar(){
-    
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const{
@@ -32,11 +33,7 @@ export function SalasEditar(){
         formState: {errors},
         reset
     } = useForm({
-        resolver: zodResolver(schemaSalas),
-        defaultValues: {
-            sala: '',
-            capacidade: 0
-        }
+        resolver: zodResolver(schemaSalas)
     });
 
     useEffect(() => {
@@ -52,7 +49,7 @@ export function SalasEditar(){
             });
 
             // Preenche os campos do formulário com os dados da sala
-            reset(response.data.sala);
+            reset(response.data);
 
         } catch (error) {
             console.error("Erro ao carregar dados da sala", error);
@@ -71,7 +68,7 @@ export function SalasEditar(){
         try{
             const token = localStorage.getItem('access_token');
             const response = await axios.patch(
-                'http://127.0.0.1:8000/api/sala/',
+                `http://127.0.0.1:8000/api/sala/${id}/`,
                 data,
                 {
                     headers:{
@@ -80,14 +77,14 @@ export function SalasEditar(){
                     }
                 }
             );
-            console.log('Sala cadastrada com sucesso!', response.data);
-            alert('Sala cadastrada com sucesso!');
+            console.log('Sala editada com sucesso!', response.data);
+            alert('Sala editada com sucesso!');
             reset();
             navigate('/inicial/salas/');
        
         } catch (error) {
-              console.error('Erro ao cadastrar sala', error);
-              alert("Erro ao cadastrar sala");
+              console.error('Erro ao editar sala', error);
+              alert("Erro ao editar sala");
         }
     }
        

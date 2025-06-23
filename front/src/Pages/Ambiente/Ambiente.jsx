@@ -8,106 +8,39 @@ import { Link } from "react-router-dom";
 
 
 export function Ambiente(){
-    const [ambientes, setAmbientes] = useState([]);
-    const [disciplinas, setDisciplinas] = useState([]);
-    const [professores, setProfessores] = useState([]);
-    const [salas, setSalas] = useState([]);
+  const [ambientes, setAmbientes] = React.useState([]);
 
-    useEffect(()=>{
-        const token = localStorage.getItem('access_token');
+  React.useEffect(() => {
+    const token = localStorage.getItem('access_token');
 
-        axios.get('http://127.0.0.01:8000/api/ambiente/',{
-            headers:{
-                'Authorization': `Bearer ${token}`
-            }     
-        })
-        // se der certo (200) quero popular a minah variavel disciplina com os dados da API
-        .then(response =>{
-            setAmbientes(response.data);
-        })
-        // se der ruim
-        .catch(error =>{
-            console.error("erro", error);
-        });
+    axios.get('http://127.0.0.1:8000/api/ambiente/', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+    .then(response => {
+      setAmbientes(response.data);
+    })
+    .catch(error => {
+      console.error("Erro ao buscar ambientes:", error);
+    });
+  }, []);
 
-        //busca dos professores por id
-        axios.get('http://127.0.0.1:8000/api/usuario/professor/',{ //url para pegar os professores
-            headers:{
-                'Authorization': `Bearer ${token}`
-            }
-        }) 
-        .then(response =>{
-            //variavel que eu tô criando agora
-            const professorPorId ={};
-            response.data.forEach(prof =>{
-                professorPorId[prof.id] = `${prof.username}`;
-            });
-            setProfessores(professorPorId);
-        })
-        //se der errado
-        .catch(error =>{
-            console.error("erro na busca por professor", error);
-        });
+  const handleDelete = (id) => {
+    const confirmar = window.confirm('Tem certeza que deseja excluir este ambiente?');
+    if (!confirmar) return;
 
-        //busca por disciplina 
-        axios.get('http://127.0.0.1:8000/api/disciplinas/',{ //url para pegar os disciplina
-            headers:{
-                'Authorization': `Bearer ${token}`
-            }
-        }) 
-        .then(response =>{
-            //variavel que eu tô criando agora
-            const disciplinaPorID ={};
-            response.data.forEach(disc =>{
-                disciplinaPorID[disc.id] = `${disc.nome}`;
-            });
-            setDisciplinas(disciplinaPorID);
-        })
-        //se der errado
-        .catch(error =>{
-            console.error("erro na busca por disciplina", error);
-        });
-
-             //busca por sala
-        axios.get('http://127.0.0.1:8000/api/sala/',{ //url para pegar os disciplina
-            headers:{
-                'Authorization': `Bearer ${token}`
-            }
-        }) 
-        .then(response =>{
-            //variavel que eu tô criando agora
-            const salaPorID ={};
-            response.data.forEach(sala =>{
-                salaPorID[sala.id] = `${sala.nome}`;
-            });
-            setSalas(salaPorID);
-        })
-        //se der errado
-        .catch(error =>{
-            console.error("erro na busca por sala", error);
-        });
-    },[])
-
-     const handleDelete = (id) => {
-        const confirmar = window.confirm('Tem certeza que deseja excluir este ambiente?');
-        if (!confirmar) return;
- 
-        const token = localStorage.getItem('access_token');
- 
-        axios.delete(`http://127.0.0.1:8000/api/ambiente/${id}/`, {
-            headers: {
-            'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(() => {
-            alert('Ambiente excluído com sucesso!');
-            setAmbientes(prev => prev.filter(dis => dis.id !== id));
-        })
-        .catch(error => {
-            console.error('Erro ao excluir ambiente:', error);
-            alert('Erro ao excluir ambiente.');
-        });
-    };
+    const token = localStorage.getItem('access_token');
+    axios.delete(`http://127.0.0.1:8000/api/ambiente/${id}/`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+    .then(() => {
+      alert('Ambiente excluído com sucesso!');
+      setAmbientes(prev => prev.filter(item => item.id !== id));
+    })
+    .catch(error => {
+      console.error('Erro ao excluir ambiente:', error);
+      alert('Erro ao excluir ambiente.');
+    });
+  };
 
 
     return(
@@ -140,9 +73,9 @@ export function Ambiente(){
                                 <td> {ambiente.dt_inicio} </td>
                                 <td> {ambiente.dt_termino} </td>
                                 <td> {ambiente.periodo} </td>
-                                <td> {disciplinas[ambiente.disciplina]} </td>
-                                <td> {salas[ambiente.sala]} </td>
-                                <td> {professores[ambiente.professor]} </td>
+                                <td> {ambiente.disciplina?.nome} </td>
+                                <td> {ambiente.sala?.nome} </td>
+                                <td> {ambiente.professor?.username} </td>
 
                                 <td className={estilos.acoes}>
                                 {/* Passo para o "param" o id do item que posso editar e excluir */}

@@ -23,12 +23,12 @@ const schemaAmbiente = z.object({
     .min(1, 'Informe um periodo')
     .max(10, 'Informe no maximo 10 caracteres'),
 
-    disciplina: z.number({
+  disciplina: z.number({
         invalid_type_error: 'Selecione uma disciplina'})
     .min(1, 'Selecione um professor'),
 
   reserva: z.number({
-        invalid_type_error: 'Selecione uma reserva'})
+        invalid_type_error: 'Selecione uma sala'})
     .min(1, 'Selecione uma sala'),
 
   professor: z.number({
@@ -133,6 +133,7 @@ export function AmbienteCadastrar(){
             );
             alert("Ambiente cadastrado com sucesso");
             reset();
+            navigate('/inicial/ambiente/');
 
         }catch(error){
             console.log("erro", error)

@@ -15,15 +15,14 @@ import { AmbienteEditar } from '../Pages/Ambiente/AmbienteEditar';
 import { Professores } from '../Pages/Professores/Professores';
 import { ProfessoresEditar } from '../Pages/Professores/ProfessoresEditar';
 import { ProfessoresCadastrar } from '../Pages/Professores/ProfessoresCadastrar';
-
+//url das paginas de gestores
 import { Gestores } from '../Pages/Gestores/Gestores';
 import { GestoresCadastrar } from  '../Pages/Gestores/GestoresCadastrar.jsx';
 import { GestoresEditar } from '../Pages/Gestores/GestoresEditar.jsx';
-
+// url de salas
 import { Salas } from '../Pages/Salas/Salas.jsx';
-import { SalaCadastrar  } from '../Pages/Salas/SalasCadastrar.jsx';
+import { SalaCadastrar } from '../Pages/Salas/SalasCadastrar.jsx';
 import { SalasEditar } from '../Pages/Salas/SalasEditar.jsx';
-
 
 
 export function Rotas(){
@@ -52,7 +51,7 @@ export function Rotas(){
 
                 <Route path = 'salas' element = {<Salas/>}/>
                 <Route path = 'salacadastrar' element = {<SalaCadastrar/>}/>
-                <Route path = 'salaeditar' element = {<SalasEditar/>}/>
+                <Route path = 'salaeditar/:id' element = {<SalasEditar/>}/>
 
             </Route>
         </Routes>

@@ -34,8 +34,8 @@ export function DisciplinaP(){
 
             <div className={estilos.listaCard}>
                 {disciplinas.map(disciplina => (
-                    <div className={estilos.card} key={disciplinas.id}>
-                        <h3 className={estilos.nome}>{disciplinas.nome}</h3>
+                    <div className={estilos.card} key={disciplina.id}>
+                        <h3 className={estilos.nome}>{disciplina.nome}</h3>
                         {/* nome dos campos seguindo os nomes do banco de dados da minha api (models) */}
                         <p><strong>Curso:</strong>{disciplina.curso}</p>
                         <p><strong>Descrição:</strong>{disciplina.desc}</p>
