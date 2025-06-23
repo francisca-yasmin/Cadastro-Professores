@@ -18,12 +18,17 @@ export function BarraNavegacao(){
                 </Link>
 
                 <Link to={`ambiente/`} className={estilos.link}>
-                    <li>Reservas de Ambiente</li>
+                    <li>Ambiente</li>
                 </Link>
 
-                <Link to={`sala/`} className={estilos.link}>
+                <Link to={`gestores/`} className={estilos.link}>
+                    <li> Gestores </li>
+                </Link>
+
+                <Link to={`salas/`} className={estilos.link}>
                     <li> Salas </li>
                 </Link>
+
             </ul>
         </nav>
 

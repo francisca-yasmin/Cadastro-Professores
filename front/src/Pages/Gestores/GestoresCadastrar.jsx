@@ -9,11 +9,12 @@ import person1 from '../../assets/images/person1.png';
 import email from '../../assets/images/email.png';
 import telefone from '../../assets/images/telefone.png';
 import ni from '../../assets/images/ni.png';
-import primeiro_nome from  '../../assets/images/primeiro_nome.png';
+import primeiro_nome from '../../assets/images/primeiro_nome.png';
+
 
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
-const schemaProfessor = z.object({
+const schemaGestor = z.object({
     username: z.string()
         .min(1, ' Informe o nome do usuário')
         .max(150, 'Informe no maximo 150 caracteres'),
@@ -52,7 +53,7 @@ const schemaProfessor = z.object({
         .regex(dateRegex, 'Data de contratação deve estar no formato YYYY-MM-DD'),
 });
 
-export function ProfessoresCadastrar(){
+export function GestoresCadastrar(){
     const navigate = useNavigate();
 
    
@@ -63,7 +64,7 @@ export function ProfessoresCadastrar(){
         formState: {errors},
         reset
     } = useForm ({
-        resolver: zodResolver(schemaProfessor),
+        resolver: zodResolver(schemaGestor),
         defaultValues: {
            ni: 0,
            telefone: '',
@@ -87,14 +88,13 @@ export function ProfessoresCadastrar(){
                     }
                 }
             );
-            alert("Professor cadastrado com sucesso");
+            alert("Gestor cadastrado com sucesso");
             reset();
-            navigate('/inicial/professor/');
+            navigate('/inicial/gestores/');
 
         }catch(error){
             console.log("erro", error)
-            console.log("Erro da API:", error.response?.data); 
-            alert("Erro ao cadastrar professor")
+            alert("Erro ao cadastrar gestor")
         }
         
     }
@@ -103,7 +103,7 @@ export function ProfessoresCadastrar(){
             <div className={estilos.conteiner}>
                 
             <form className={estilos.loginForm} onSubmit={handleSubmit(obterDadosFormulario)}>
-                    <h2 className={estilos.titulo}>Cadastar Professor</h2>
+                    <h2 className={estilos.titulo}>Cadastar Gestor</h2>
     
                     <div className={estilos.campo}>
                         <label className={estilos.icone}>
@@ -147,7 +147,7 @@ export function ProfessoresCadastrar(){
 
                     <div className={estilos.campo}>
                         <label className={estilos.icone}>
-                          
+                            
                         </label>
 
                         <input
@@ -162,7 +162,7 @@ export function ProfessoresCadastrar(){
 
                         <input
                             type="hidden"
-                            value="P"
+                            value="G"
                             {...register('tipo')}
                         />
               
@@ -192,8 +192,6 @@ export function ProfessoresCadastrar(){
                     </div>
                     {errors.telefone && <p className={estilos.error}>{errors.telefone.message}</p>}
     
-                    <p className={estilos.data}>Data de Nascimento</p>
-
                     <div className={estilos.campo}>
                         <label className={estilos.icone}>
                             
@@ -206,10 +204,8 @@ export function ProfessoresCadastrar(){
                     </div>
                     {errors.nascimento && <p className={estilos.error}>{errors.nascimento.message}</p>}
                     
-                    <p className={estilos.data}>Data de Contratação</p>
-
                     <div className={estilos.campo}>
-             
+                     
                         <label className={estilos.icone}>
                            
                         </label>

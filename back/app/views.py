@@ -44,6 +44,11 @@ class UsuarioProfessorListAPIView(ListAPIView):
     serializer_class = UsuarioSerializer
     permission_classes = [IsGestor]
 
+class UsuarioGestorListAPIView(ListAPIView):
+    queryset = Usuario.objects.filter(tipo = 'G')
+    serializer_class = UsuarioSerializer
+    permission_classes = [IsGestor] 
+
 # CRUD -> disciplina
 class DisciplinaListCreate(ListCreateAPIView):
     queryset = Disciplina.objects.all()

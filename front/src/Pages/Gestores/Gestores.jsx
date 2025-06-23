@@ -7,14 +7,14 @@ import estilos from '../Visualizar.module.css';
 import { Link, useNavigate } from "react-router-dom";
 
 
-export function Professores(){
-    const [professores , setProfessores] = useState([]);
+export function Gestores(){
+    const [gestores , setGestores] = useState([]);
     const navigate= useNavigate();
 
     useEffect(()=>{
         const token = localStorage.getItem('access_token');
 
-        axios.get('http://127.0.0.1:8000/api/usuario/professor/',{
+        axios.get('http://127.0.0.1:8000/api/usuario/gestor/',{
             headers:{
                 'Authorization': `Bearer ${token}`
             }
@@ -23,7 +23,7 @@ export function Professores(){
 
         // se der certo (200) quero popular a minah variavel disciplina com os dados da API
         .then(response =>{
-            setProfessores(response.data);
+            setGestores(response.data);
         })
         // se der ruim
         .catch(error =>{
@@ -32,7 +32,7 @@ export function Professores(){
     },[])
 
      const handleDelete = (id) => {
-        const confirmar = window.confirm('Tem certeza que deseja excluir este professor?');
+        const confirmar = window.confirm('Tem certeza que deseja excluir este gestor?');
         if (!confirmar) return;
  
         const token = localStorage.getItem('access_token');
@@ -43,24 +43,24 @@ export function Professores(){
             }
         })
         .then(() => {
-            alert('Professor excluído com sucesso!');
-            setProfessores(prev => prev.filter(dis => dis.id !== id));
-            navigate('/inicial/professor')
+            alert('Gestor excluído com sucesso!');
+            setGestores(prev => prev.filter(dis => dis.id !== id));
+            navigate('/inicial/gestores')
         })
         .catch(error => {
-            console.error('Erro ao excluir professor:', error);
-            alert('Erro ao excluir a professor.');
+            console.error('Erro ao excluir gestor:', error);
+            alert('Erro ao excluir a gestor.');
         });
     };
 
 
     return(
         <main className={estilos.container}>
-            <h3 className={estilos.titulo}> Pofessores </h3>
+            <h3 className={estilos.titulo}> Gestores </h3>
             <div className={estilos.topoAcoes}>
                 {/* botao de adicionar */}
-                <Link to="/inicial/cadastrarP">
-                    <img className={estilos.iconeAdd} src={add} alt="adicionar um professor novo" />
+                <Link to="/inicial/cadastrarGestor">
+                    <img className={estilos.iconeAdd} src={add} alt="adicionar um gestor novo" />
                 </Link>
             </div>
 
@@ -79,23 +79,23 @@ export function Professores(){
                         </tr>
                     </thead>
                     <tbody>
-                        {professores.map(professor =>(
-                            <tr key={professor.id}>
-                            <td> {professor.first_name} </td>
-                            <td> {professor.email} </td>
-                            <td> {professor.ni} </td>
-                            <td> {professor.nascimento} </td>
-                            <td> {professor.data_contratacao} </td>
-                            <td> {professor.telefone} </td>
+                        {gestores.map(gestores =>(
+                            <tr key={gestores.id}>
+                            <td> {gestores.username} </td>
+                            <td> {gestores.email} </td>
+                            <td> {gestores.ni} </td>
+                            <td> {gestores.nascimento} </td>
+                            <td> {gestores.data_contratacao} </td>
+                            <td> {gestores.telefone} </td>
                            
 
-                            <td className={estilos.acoes}>
                             {/* Passo para o "param" o id do item que posso editar e excluir */}
-                                <Link to={`/inicial/profedit/${professor.id}`}>
+                            <td className={estilos.acoes}>
+                                <Link to={`/inicial/editGestor/${gestores.id}`}>
                                     <img src={canetinha} className={estilos.icone}/>
                                 </Link>
                                 <img src={del} alt="Excluir" className={estilos.icone}
-                                    onClick={() => handleDelete(professor.id)}/>                                  
+                                    onClick={() => handleDelete(gestores.id)}/>                                  
                             </td>
                             </tr>
                         ))}

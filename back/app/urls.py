@@ -1,5 +1,9 @@
 from django.urls import path
-from .views import LoginView, UsuarioListCreate, UsuarioRetrieveUpdateDestroy, AmbienteListCreate, AmbienteRetrieveUpdateDestroy, AmbienteProfessorList, DisciplinaListCreate, DisciplinaRetrieveUpdateDestroy, DisciplinaProfessorList, SalaListCreate, SalaRetrieveUpdateDestroy, UsuarioProfessorListAPIView
+from .views import (LoginView, UsuarioListCreate, UsuarioRetrieveUpdateDestroy, 
+                    AmbienteListCreate, AmbienteRetrieveUpdateDestroy, AmbienteProfessorList, 
+                    DisciplinaListCreate, DisciplinaRetrieveUpdateDestroy, DisciplinaProfessorList, 
+                    SalaListCreate, SalaRetrieveUpdateDestroy, UsuarioProfessorListAPIView,
+                    UsuarioGestorListAPIView)
 
 urlpatterns = [
     path('login/', LoginView.as_view()),   #url de  login
@@ -8,6 +12,7 @@ urlpatterns = [
     path('usuario/', UsuarioListCreate.as_view()),    
     path('usuario/<int:pk>/', UsuarioRetrieveUpdateDestroy.as_view()),
     path('usuario/professor/', UsuarioProfessorListAPIView.as_view()),
+    path('usuario/gestor/', UsuarioGestorListAPIView.as_view()),
 
     #urls de ambiente
     path('ambiente/', AmbienteListCreate.as_view()), 

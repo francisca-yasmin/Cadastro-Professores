@@ -49,7 +49,7 @@ const schemaProfessor = z.object({
         .regex(dateRegex, 'Data de contratação deve estar no formato YYYY-MM-DD'),
 });
 
-export function ProfessoresEditar(){
+export function GestoresEditar(){
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ export function ProfessoresEditar(){
      useEffect(() => {
 
 
-        async function carregarProfessor() {
+        async function carregarGestor() {
         try {
             const token = localStorage.getItem('access_token');
             const response = await axios.get(`http://127.0.0.1:8000/api/usuario/${id}/`, {
@@ -86,12 +86,12 @@ export function ProfessoresEditar(){
             reset(response.data);
 
         } catch (error) {
-            console.error("Erro ao carregar dados do professor", error);
-            alert("Erro ao carregar os dados do professor");
+            console.error("Erro ao carregar dados do gestor", error);
+            alert("Erro ao carregar os dados do gestor");
         }
     }
 
-    carregarProfessor();
+    carregarGestor();
 }, [id, reset]);
 
     //retornando os dados para API
@@ -112,7 +112,7 @@ export function ProfessoresEditar(){
             );
             alert("Professor editado com sucesso");
             reset();
-            navigate('/inicial/professor/');
+            navigate('/inicial/gestores/');
 
         }catch(error){
             console.log("erro", error);
@@ -125,7 +125,7 @@ export function ProfessoresEditar(){
         <div className={estilos.conteiner}>
             
         <form className={estilos.loginForm} onSubmit={handleSubmit(obterDadosFormulario)}>
-                <h2 className={estilos.titulo}>Editar Professor</h2>
+                <h2 className={estilos.titulo}>Editar Gestor</h2>
 
                 <div className={estilos.campo}>
                     <label className={estilos.icone}>
@@ -174,7 +174,7 @@ export function ProfessoresEditar(){
 
                 <div className={estilos.campo}>
                     <label className={estilos.icone}>
-                        <img src={ni} alt="ni do professor" />
+                        <img src={ni} alt="ni do gestor" />
                     </label>
 
                     <input type="number"
@@ -187,7 +187,7 @@ export function ProfessoresEditar(){
                 
                 <div className={estilos.campo}>
                     <label className={estilos.icone}>
-                        <img src={telefone} alt="telefone do professor" />
+                        <img src={telefone} alt="telefone do gestor" />
                     </label>
 
                     <input
@@ -197,8 +197,6 @@ export function ProfessoresEditar(){
                     />
                 </div>
                 {errors.telefone && <p className={estilos.error}>{errors.telefone.message}</p>}
-
-                <p className={estilos.data}>Data de Contratação</p>
 
                 <div className={estilos.campo}>
                     <label className={estilos.icone}>
@@ -212,8 +210,6 @@ export function ProfessoresEditar(){
                 </div>
                 {errors.nascimento && <p className={estilos.error}>{errors.nascimento.message}</p>}
                 
-                <p className={estilos.data}>Data de Contratação</p>
-
                 <div className={estilos.campo}>
                     <label className={estilos.icone}>
                        
@@ -224,7 +220,7 @@ export function ProfessoresEditar(){
                         {...register('data_contratacao')}
                     />
                 </div>
-                 {errors.data_contratacao && <p className={estilos.error}>{errors.data_contratacao.message}</p>}
+                {errors.data_contratacao && <p className={estilos.error}>{errors.data_contratacao.message}</p>}
                 
 
                 <div className={estilos.icones}>
