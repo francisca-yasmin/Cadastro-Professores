@@ -30,12 +30,11 @@ class SalaSerializer(serializers.ModelSerializer):
 
 class AmbienteSerializer(serializers.ModelSerializer):
     sala = SalaSerializer(source = 'reserva', read_only=True)
-    professor = UsuarioSerializer(read_only=True)
-    disciplina = DisciplinaSerializer(read_only=True)
+    
     class Meta:
         model = Ambiente
         fields = '__all__'
-
+        
     # se estiver criando ele bloqueia
     def validate(self, attrs):
         reserva = attrs.get('reserva')  # Sala

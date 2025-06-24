@@ -101,6 +101,8 @@ class AmbienteListCreate(ListCreateAPIView):
         if professor_id:
             queryset = queryset.filter(professor_id=professor_id)
         return queryset
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
 
 class AmbienteRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     queryset = Ambiente.objects.all()

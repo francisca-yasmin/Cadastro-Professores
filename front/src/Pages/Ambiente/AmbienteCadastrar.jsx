@@ -25,7 +25,7 @@ const schemaAmbiente = z.object({
 
   disciplina: z.number({
         invalid_type_error: 'Selecione uma disciplina'})
-    .min(1, 'Selecione um professor'),
+    .min(1, 'Selecione uma disciplina'),
 
   reserva: z.number({
         invalid_type_error: 'Selecione uma sala'})
@@ -66,7 +66,7 @@ export function AmbienteCadastrar(){
         async function buscarProfessores() {
             try{
                 const token = localStorage.getItem('access_token');
-                const response = await axios.get('http://127.0.0.1:8000/api/usuario/', {
+                const response = await axios.get('http://127.0.0.1:8000/api/usuario/professor/', {
                     headers:{
                         'Authorization': `Bearer ${token}`
                     }
@@ -121,6 +121,8 @@ export function AmbienteCadastrar(){
         console.log("Dados do formulario", data);
 
         try{
+            console.log("Dados enviados:", data);
+
             const token = localStorage.getItem('access_token');
             await axios.post(
                 'http://127.0.0.1:8000/api/ambiente/',

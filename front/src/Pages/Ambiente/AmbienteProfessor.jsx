@@ -68,11 +68,11 @@ export function AmbienteProfessor(){
                 {/* Percorre as reservas e exibe os dados */}
                 {ambientes.map(ambiente => (
                     <div className={estilos.card} key={ambiente.id}>
-                        <h3 className={estilos.nome}>{ambiente.reserva?.nome}</h3>
+                        <h3 className={estilos.nome}>{salas[ambiente.reserva]}</h3>
                         <p><strong>Data início: </strong>{ambiente.dt_inicio}</p>
                         <p><strong>Data término: </strong>{ambiente.dt_termino}</p>
                         <p><strong>Período: </strong>{ambiente.periodo}</p>
-                        <p><strong>Disciplina: </strong>{ambiente.disciplina?.nome}</p>
+                        <p><strong>Disciplina: </strong>{disciplinas[ambiente.disciplina]}</p>
                     </div>
                 ))}
             </div>

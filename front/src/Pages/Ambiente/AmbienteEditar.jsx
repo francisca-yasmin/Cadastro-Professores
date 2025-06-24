@@ -60,28 +60,30 @@ export function AmbienteEditar(){
         formState: {errors},
         reset
     } = useForm ({
-        resolver: zodResolver(schemaAmbiente),
-        defaultValues: {
-           dt_inicio: '',
-           dt_termino: '',
-           periodo: '',
-           disciplina: 0,
-           reserva: 0,
-           professor: 0
-        }
+        resolver: zodResolver(schemaAmbiente)
     });
 
     useEffect(() => {
         async function buscarProfessores() {
             try{
                 const token = localStorage.getItem('access_token');
-                const response = await axios.get('http://127.0.0.1:8000/api/usuario/', {
+
+                const response = await axios.get('http://127.0.0.1:8000/api/usuario/professor/', {
                     headers:{
                         'Authorization': `Bearer ${token}`
                     }
                 });
                 //se der certo
                 setProfessores(response.data);
+                //Preenche o formulários com os dados do registro do ID
+                const resAmbiente = await axios.get(`http://127.0.0.1:8000/api/ambiente/${id}/`, {
+                    headers: { 
+                        Authorization: `Bearer ${token}` 
+                    }
+                });
+ 
+                // Preenche o formulário
+                reset(resAmbiente.data);
 
             }catch(error){
                 console.error("erro", error);
@@ -128,6 +130,7 @@ export function AmbienteEditar(){
                          'Authorization': `Bearer ${token}`
                     }
                 })
+
                 //popularizando meu form com os dados que vieram da minha API
                 reset({
                     dt_inicio: response.data.dt_inicio,
@@ -234,7 +237,7 @@ export function AmbienteEditar(){
 
                     <select className={estilos.inputField}
                     {...register('disciplina', { valueAsNumber: true })}>
-                        <option  value="">Selecione uma disciplina</option>
+                        <option  value={0}>Selecione uma disciplina</option>
                         {disciplinas.map((disc) => (
                             <option className={estilos.inputField} key={disc.id} value={disc.id}>
                                 {disc.nome} 
@@ -254,7 +257,7 @@ export function AmbienteEditar(){
 
                     <select className={estilos.inputField}
                     {...register('reserva', { valueAsNumber: true })}>
-                        <option  value="">Selecione uma sala</option>
+                        <option  value={0}>Selecione uma sala</option>
                         {salas.map((sala) => (
                             <option className={estilos.inputField} key={sala.id} value={sala.id}>
                                 {sala.nome}
@@ -274,7 +277,7 @@ export function AmbienteEditar(){
 
                     <select className={estilos.inputField}
                     {...register('professor', { valueAsNumber: true })}>
-                        <option  value="">Selecione um professor</option>
+                        <option  value={0}>Selecione um professor</option>
                         {professores.map((prof) => (
                             <option className={estilos.inputField} key={prof.id} value={prof.id}>
                                 {prof.first_name} {prof.last_name}

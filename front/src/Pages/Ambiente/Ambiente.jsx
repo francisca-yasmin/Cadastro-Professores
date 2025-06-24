@@ -9,10 +9,15 @@ import { Link } from "react-router-dom";
 
 export function Ambiente(){
   const [ambientes, setAmbientes] = React.useState([]);
+  const [salas, setSalas] = useState([]);
+  const [disciplinas, setDisciplinas] = useState([]);
+  const [professores, setProfessores] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem('access_token');
 
+
+    // buscando a reserva
     axios.get('http://127.0.0.1:8000/api/ambiente/', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
@@ -22,6 +27,48 @@ export function Ambiente(){
     .catch(error => {
       console.error("Erro ao buscar ambientes:", error);
     });
+
+    // Buscar professores
+    axios.get('http://127.0.0.1:8000/api/usuario/professor/', {
+      headers: { 'Authorization': `Bearer ${token}` }
+  })
+  .then(response => {
+      const professorPorId = {};
+      response.data.forEach(prof => {
+          professorPorId[prof.id] = `${prof.first_name}`;
+      });
+      setProfessores(professorPorId);
+  })
+  .catch(error => console.error("Erro ao buscar o professor ", error));
+
+  // Buscar salas
+  axios.get('http://127.0.0.1:8000/api/sala/', {
+      headers: { 'Authorization': `Bearer ${token}` }
+  })
+  .then(response => {
+      const salaPorId = {};
+      response.data.forEach(sala => {
+          salaPorId[sala.id] = `${sala.nome}`;
+      });
+      setSalas(salaPorId);
+  })
+  .catch(error => console.error("Erro ao buscar a sala ", error));
+
+  // Buscar disciplinas
+  axios.get('http://127.0.0.1:8000/api/disciplinas/', {
+      headers: { 'Authorization': `Bearer ${token}` }
+  })
+  .then(response => {
+      const disciplinaPorId = {};
+      response.data.forEach(disciplina => {
+          disciplinaPorId[disciplina.id] = `${disciplina.nome}`;
+      });
+      setDisciplinas(disciplinaPorId);
+  })
+  .catch(error => console.error("Erro ao buscar a disciplina ", error));
+
+
+    
   }, []);
 
   const handleDelete = (id) => {
@@ -73,9 +120,9 @@ export function Ambiente(){
                                 <td> {ambiente.dt_inicio} </td>
                                 <td> {ambiente.dt_termino} </td>
                                 <td> {ambiente.periodo} </td>
-                                <td> {ambiente.disciplina?.nome} </td>
-                                <td> {ambiente.sala?.nome} </td>
-                                <td> {ambiente.professor?.username} </td>
+                                <td>{disciplinas[ambiente.disciplina]}</td>
+                                <td>{salas[ambiente.reserva]}</td>
+                                <td>{professores[ambiente.professor]}</td>
 
                                 <td className={estilos.acoes}>
                                 {/* Passo para o "param" o id do item que posso editar e excluir */}
