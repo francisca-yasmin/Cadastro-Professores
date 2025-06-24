@@ -5,7 +5,6 @@
     height: 80%;
     gap: 50px;
     display: flex;
-    flex-direction: row;
     justify-content: center;
 }
 
@@ -16,10 +15,10 @@
 } 
 
 .icones img{
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  padding: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    padding: 20px;
 }
 
 .conteiner p{
@@ -46,9 +45,12 @@
     margin: 10px;
 }
   
-.filtros{
+.filtros {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
     align-items: center;
+    padding: 10px;
 }
 

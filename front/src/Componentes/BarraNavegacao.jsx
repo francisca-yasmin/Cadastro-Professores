@@ -30,6 +30,7 @@ export function BarraNavegacao(){
                     <li>Ambiente</li>
                 </Link>
 
+                {/* filtrar o que cada tipo de usuario consegue ver */}
                 {tipo === 'G' && (
                     <>
                         <Link to={`professor/`} className={estilos.link}>

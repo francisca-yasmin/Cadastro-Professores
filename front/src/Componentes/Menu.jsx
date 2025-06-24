@@ -31,55 +31,53 @@ export function Menu(){
 
             <main className={estilos.conteiner}>
 
-                    <p> Seja bem vindo, {nome}! </p>
-
                 <div className={estilos.filtros}>
 
 
-                {/* filtro de ambientes */}
-                <Link to={ambiente} className={estilos.link}>
-                    <div className={estilos.icones}>
-                        <img src={ambientes} alt="icone de ambiente" />
-                    </div>
-                    <p> Ambientes </p>
-                </Link>
+                    {/* filtro de ambientes */}
+                    <Link to={ambiente} className={estilos.link}>
+                        <div className={estilos.icones}>
+                            <img src={ambientes} alt="icone de ambiente" />
+                        </div>
+                        <p> Ambientes </p>
+                    </Link>
 
-                {/* filtro de disciplinas */}
-                <Link to={linkDisciplina} className={estilos.link}>
-                    <div className={estilos.icones}>
-                        <img src={disciplinas} alt="icone de disciplina" />
-                    </div>
-                        <p> Disciplinas </p>
+                    {/* filtro de disciplinas */}
+                    <Link to={linkDisciplina} className={estilos.link}>
+                        <div className={estilos.icones}>
+                            <img src={disciplinas} alt="icone de disciplina" />
+                        </div>
+                            <p> Disciplinas </p>
 
-                </Link>
-            
-                {/* filtro de gestor */}
-               {tipo === 'G' && (
-                   <>
-                        <Link to='gestores' className={estilos.link}>
-                            <div className={estilos.icones}>
-                                <img src={gestor} alt="icone de gestor" />
-                            </div>
-                                <p> Gestores </p>
+                    </Link>
+                
+                    {/* filtro de gestor */}
+                    {tipo === 'G' && (
+                        <>
+                            <Link to='gestores' className={estilos.link}>
+                                <div className={estilos.icones}>
+                                    <img src={gestor} alt="icone de gestor" />
+                                </div>
+                                    <p> Gestores </p>
 
-                        </Link>
+                            </Link>
 
-                        {/* filtro de professores */}
-                        <Link to='professor' className={estilos.link}>
-                            <div className={estilos.icones}>
-                                <img src={professor} alt="icone de professor" />
-                            </div>
-                                <p> Professores </p>
-                        </Link>
+                            {/* filtro de professores */}
+                            <Link to='professor' className={estilos.link}>
+                                <div className={estilos.icones}>
+                                    <img src={professor} alt="icone de professor" />
+                                </div>
+                                    <p> Professores </p>
+                            </Link>
 
-                        <Link to='salas' className={estilos.link}>
-                            <div className={estilos.icones}>
-                                <img src={salaas} alt="icone de salas" />
-                            </div>
-                                <p> Salas </p>
-                        </Link>
-                    </>
-               )}
+                            <Link to='salas' className={estilos.link}>
+                                <div className={estilos.icones}>
+                                    <img src={salaas} alt="icone de salas" />
+                                </div>
+                                    <p> Salas </p>
+                            </Link>
+                        </>
+                    )}
                </div>
             </main>
         </>

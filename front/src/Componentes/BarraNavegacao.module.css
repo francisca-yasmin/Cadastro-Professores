@@ -12,6 +12,7 @@ body{
     justify-content: center;
     height: 40px;
     border-bottom: 2px solid #555;
+    align-items: center;
 }
 
 ul {
@@ -44,12 +45,11 @@ li a.active {
 
 .linkLogout {
     position: fixed; /* Fixa o botão na tela */
-    top: 20px;       /* Distância do topo */
     right: 20px;     /* Distância da direita */
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     cursor: pointer;
-    z-index: 999;    /* Garante que fique visível por cima de tudo */
+    z-index: 999;   /*  Garante que fique visível por cima de tudo */
     transition: transform 0.2s ease-in-out;
 }
 
@@ -57,6 +57,8 @@ li a.active {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    display: flex;
+    justify-content: center;
 }
 
 .linkLogout:hover {

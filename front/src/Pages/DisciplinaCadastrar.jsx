@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import estilos from '../Pages/Cadastrar.module.css'; 
+import estilos from '../Pages/Cadastrar.module.css'; //css da pagina
 import person1 from '../assets/images/person1.png';
 import disc from '../assets/images/disc.png'; //nome da disciplina
 import curso from '../assets/images/curso.png'; // nome do curso
@@ -54,7 +54,7 @@ export function DisciplinaCadastrar(){
         async function buscarProfessores() {
             try{
                 const token = localStorage.getItem('access_token');
-                const response = await axios.get('http://127.0.0.1:8000/api/usuario/', {
+                const response = await axios.get('http://127.0.0.1:8000/api/usuario/professor/', {
                     headers:{
                         'Authorization': `Bearer ${token}`
                     }

@@ -99,7 +99,8 @@ export function DisciplinaEditar() {
             alert('Disciplina editada com sucesso!');
             reset();
             navigate('/inicial/disciplina');
- 
+            
+        //mensagem de erro caso dê errado
         } catch (error) {
             console.error('Erro ao editar disciplina', error);
             alert("Erro ao editar disciplina");

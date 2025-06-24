@@ -2,20 +2,19 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react'; 
 import estilos from '../Visualizar.module.css'; 
 
-// Componente que mostra as reservas do professor
-
+// componente que mostra as reservas do professor
 export function AmbienteProfessor(){
 
-    // Estados para armazenar dados da API
+    // estados para armazenar dados da api
     const [ambientes, setAmbientes] = useState([]);
     const [disciplinas, setDisciplinas] = useState([]);
     const [salas, setSalas] = useState([]);
     
-    // Carregamento dos dados ao abrir a tela
+    // carrega os dados ao abrir a tela
     useEffect(()=>{
         const token = localStorage.getItem('access_token');
 
-        // Buscar reservas do professor
+        // busca as reservas do professor
         axios.get('http://127.0.0.1:8000/api/professor/ambiente/', {
             headers:{ 'Authorization': `Bearer ${token}` }
         })
@@ -23,10 +22,10 @@ export function AmbienteProfessor(){
             setAmbientes(response.data);
         })
         .catch(error => {
-            console.error("Erro", error);
+            console.error("erro", error);
         });
 
-        // Buscar salas
+        // busca todas as salas
         axios.get('http://127.0.0.1:8000/api/sala/', {
             headers:{ 'Authorization': `Bearer ${token}` }
         })
@@ -38,10 +37,10 @@ export function AmbienteProfessor(){
             setSalas(salaPorId);
         })
         .catch(error => {
-            console.error("Erro ao buscar a sala ", error);
+            console.error("erro ao buscar a sala", error);
         });
 
-        // Buscar disciplinas
+        // busca todas as disciplinas
         axios.get('http://127.0.0.1:8000/api/disciplinas/', {
             headers:{ 'Authorization': `Bearer ${token}` }
         })
@@ -53,19 +52,18 @@ export function AmbienteProfessor(){
             setDisciplinas(disciplinaPorId);
         })
         .catch(error => {
-            console.error("Erro ao buscar a disciplina ", error);
+            console.error("erro ao buscar a disciplina", error);
         });
 
     }, []);
     
-    
-    // Interface visual
+    // interface visual da página
     return(
-        <div className={estilos.containerCard}>
+        <div className={estilos.conteinerCard}>
             <h2 className={estilos.tituloCard}>Minhas Reservas</h2>
 
             <div className={estilos.listaCard}>
-                {/* Percorre as reservas e exibe os dados */}
+                {/* percorre as reservas e exibe os dados */}
                 {ambientes.map(ambiente => (
                     <div className={estilos.card} key={ambiente.id}>
                         <h3 className={estilos.nome}>{salas[ambiente.reserva]}</h3>

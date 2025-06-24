@@ -65,7 +65,6 @@ export function ProfessoresCadastrar(){
     } = useForm ({
         resolver: zodResolver(schemaProfessor),
         defaultValues: {
-           ni: 0,
            telefone: '',
            nascimento: '',
            data_contratacao: ''
@@ -194,6 +193,7 @@ export function ProfessoresCadastrar(){
     
                     <p className={estilos.data}>Data de Nascimento</p>
 
+                        Data de Nascimento
                     <div className={estilos.campo}>
                         <label className={estilos.icone}>
                             
@@ -208,6 +208,7 @@ export function ProfessoresCadastrar(){
                     
                     <p className={estilos.data}>Data de Contratação</p>
 
+                    Data de Contratação
                     <div className={estilos.campo}>
              
                         <label className={estilos.icone}>

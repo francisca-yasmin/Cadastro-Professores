@@ -1,0 +1,9 @@
+.container{
+    min-height: 95.8vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.conteudo{
+    flex: 1;
+}
