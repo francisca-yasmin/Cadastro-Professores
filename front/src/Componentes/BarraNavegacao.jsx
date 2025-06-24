@@ -1,7 +1,21 @@
 import estilos from './BarraNavegacao.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function BarraNavegacao(){
+    const navigate = useNavigate;
+
+    const tipo = localStorage.getItem('tipo');
+
+    //verificar como quem (g ou p) eu tô logada
+    const linkDiscuplina = tipo == 'P' ? 'discprofessor' : 'disciplina'
+    const linkAmbiente = tipo == 'P' ? 'ambienteProfessor' : 'ambiente'
+
+     const nome = localStorage.getItem('username')
+
+    function handleLogout(){
+        localStorage.clear();
+        navigate('/');
+    }
     return(
         <nav className={estilos.conteiner}>
             <ul>

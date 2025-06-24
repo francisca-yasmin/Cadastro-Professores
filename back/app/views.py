@@ -134,6 +134,7 @@ class AmbienteProfessorList(ListAPIView):
         #filtra reservas daquele professor que tá fazendo a consulta
         return Ambiente.objects.filter(professor=self.request.user)
 
+
 class LoginView(TokenObtainPairView):
     serializer_class = LoginSerializer
 

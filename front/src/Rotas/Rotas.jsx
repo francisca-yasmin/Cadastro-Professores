@@ -11,6 +11,7 @@ import { DisciplinaCadastrar } from '../Pages/DisciplinaCadastrar';
 import { Ambiente } from '../Pages/Ambiente/Ambiente';
 import { AmbienteCadastrar } from '../Pages/Ambiente/AmbienteCadastrar';
 import { AmbienteEditar } from '../Pages/Ambiente/AmbienteEditar';
+import { AmbienteProfessor } from '../Pages/Ambiente/AmbienteProfessor.jsx';
 // urls de professores
 import { Professores } from '../Pages/Professores/Professores';
 import { ProfessoresEditar } from '../Pages/Professores/ProfessoresEditar';
@@ -40,6 +41,7 @@ export function Rotas(){
                 <Route path = 'ambiente' element = {<Ambiente/>}/>
                 <Route path = 'cadastroAmbiente' element = {<AmbienteCadastrar/>}/>
                 <Route path = 'editAmbiente/:id' element={<AmbienteEditar />} />
+                <Route path = 'ambienteProfessor' element={<AmbienteProfessor/>}/>
 
                 <Route path = 'professor' element ={<Professores/>}/>
                 <Route path = 'profedit/:id' element ={<ProfessoresEditar/>}/>
